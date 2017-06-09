@@ -11,16 +11,32 @@
 const short MAX_MEM=1024;
 
 typedef struct{
-	short ic,
-		  k4,
-		  k8;
-	unsigned short pc,
-				   ri,
-				   op,
-				   rs,
-				   rt,
-				   rd;
 
+	short ic,
+		  ri,
+		  opcode,
+		  pc,
+		  funct7,
+		  funct3,
+		  imm_I,
+		  imm_U,		  
+		  imm_S_4,
+		  imm_S_7,
+		  imm_B_6,
+		  imm_B_4,
+		  imm_J_8,
+		  imm_J_10,
+		  _bit11_tipoB,//poderia ser bool
+		  _bit12_tipoB,//poderia ser bool
+		  _bit20_tipoJ,//poderia ser bool
+		  _bit11_tipoJ,//poderia ser bool
+		  rs1,
+		  rs2,
+		  rd;
+	bool
+		wr_men, // acho que nao precisa
+		rd_men, // acho que nao precisa 
+		wr_breg; // acho que nao precisa
 	//bool
 		// wren;
 
