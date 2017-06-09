@@ -33,24 +33,30 @@ SC_MODULE(decode){
 			escrita->funct3 = (ri >> 12) & 0x7;
 			
 			escrita->Imm_I = (ri >> 21) & 0xFFF;
-			escrita->Imm_S_4 = (ri >> 7) & 0x1F;
-			escrita->Imm_S_7 = escrita->funct7;
 			escrita->Imm_U = (ri >> 12) & 0xFFFFF;
-						
+			escrita->Imm_S = (funct7,rd); // concatenação .... funciona?			
 			escrita->rs1 = (ri >> 15) & 0x1F;
 			escrita->rs2 = (ri >> 20) & 0x1F;
 			escrita->rd =  (ri >> 7) & 0x1F;
 			
-			escrita->_bit12_tipoB =(ri >> 31) & 0x1;
-			escrita->_bit11_tipoB =(ri >> 7) & 0x1;
-			escrita->_bit20_tipoJ = escrita->_bit12_tipoB;
-			escrita->_bit11_tipoJ =(ri >> 20) & 0x1;
+			_bit12_tipoB =(ri >> 31) & 0x1;
+			_bit11_tipoB =(ri >> 7) & 0x1;
+			_bit20_tipoJ = _bit12_tipoB;
+			_bit11_tipoJ =(ri >> 20) & 0x1;
 		
-			escrita->Imm_B_6 =(escrita->funct7) & 0x7F;
-			escrita->Imm_B_4 =(escrita->rd >> 1) & 0xF;
-			escrita->Imm_J_8 =  (ri >> 12) & 0xFF;	
-			escrita->Imm_J_10 = (ri >> 21) &	0x3FF
-/*k
+			escrita->shamt = (ri >> 20) & 0x1F;
+			
+		   imm_B_4 = (ri >> 25) & 0x3F;
+		   imm_B_6 = (ri >>8) & 0xF;
+
+		   imm_J_10 = (ri >> 21) & 0x3FF;
+		   imm_J_8 = (ri >>12) & 0xF;
+		   
+		   escrita->Imm_B(_bit12_tipoB,_bit11_tipoB,imm_B_4,imm_B_6);// concatenação .... funciona?	
+     		escrita->Imm_J(_bit20_tipoJ,imm_J_8,_bit11_tipoJ,imm_J_10);// concatenação .... funciona?	
+
+			
+/*
 			escrita->op = (ri >> 12) & 0xF;
 			escrita->rs = (ri >> 8) & 0xF;
 			escrita->rt = (ri >> 4) & 0xF;
@@ -71,6 +77,12 @@ SC_MODULE(decode){
 private:
 		contexto *recebimento, *escrita;
 		unsigned short ri, rd;
+		short 	imm_B_6,  imm_B_4,  imm_J_8,  imm_J_10; 
+		short _bit11_tipoB;
+		short _bit12_tipoB;//poderia ser bool
+		short _bit20_tipoJ;//poderia ser bool
+		short _bit11_tipoJ;//poderia ser bool
+
 };
 
 

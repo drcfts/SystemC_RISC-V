@@ -20,16 +20,10 @@ typedef struct{
 		  funct3,
 		  imm_I,
 		  imm_U,		  
-		  imm_S_4,
-		  imm_S_7,
-		  imm_B_6,
-		  imm_B_4,
-		  imm_J_8,
-		  imm_J_10,
-		  _bit11_tipoB,//poderia ser bool
-		  _bit12_tipoB,//poderia ser bool
-		  _bit20_tipoJ,//poderia ser bool
-		  _bit11_tipoJ,//poderia ser bool
+		  Imm_S,
+		  Imm_B,
+		  imm_J,
+		  shamt,	
 		  rs1,
 		  rs2,
 		  rd;
