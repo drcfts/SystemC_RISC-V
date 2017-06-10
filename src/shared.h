@@ -18,11 +18,11 @@ typedef struct{
 		  pc,
 		  funct7,
 		  funct3,
-		  imm_I,
-		  imm_U,		  
+		  Imm_I,
+		  Imm_U,
 		  Imm_S,
 		  Imm_B,
-		  imm_J,
+		  Imm_J,
 		  shamt,	
 		  rs1,
 		  rs2,
@@ -94,7 +94,7 @@ enum funct7_tipoI_shamt{
 f7_RESTO_I = 0x00,
 f7_SRAI = 0x20
 };
-enum funct7_tipoI_shamt{
+enum funct3_tipoI_shamt{
 f3_SLLI = 0x1,
 f3_SRLI_SRAI = 0x5
 };

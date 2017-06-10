@@ -55,16 +55,16 @@ SC_MODULE(decode){
 		    // Imm_B(_bit12_tipoB,_bit11_tipoB,Imm_B_4,Imm_B_6);// concatenação .... funciona?	
      	    // Imm_J(_bit20_tipoJ,Imm_J_8,_bit11_tipoJ,Imm_J_10);// concatenação .... funciona?
 		  	
-			uint32_t ax1,ax2,xa1;
-		    ax1 = ((_bit11_tipoJ << 10)  | Imm_J_10) & 0x7FF;
-		    ax2 = (((Imm_J_8 << 11) | ax1)& 0xFFF) ;
+
+		    ax1 = ((_bit11_tipoJ << 10)  | imm_J_10) & 0x7FF;
+		    ax2 = (((imm_J_8 << 11) | ax1)& 0xFFF) ;
 		    escrita->Imm_J = ((_bit20_tipoJ << 19) | ax2) & 0xFFFFF;
 			///////////////////////////////////	
 			escrita->Imm_S = (((recebimento->funct7 << 5 )|rd) & 0xFFF);
 			/////////////////////////////////////		  	
-			xa1  =  ((Imm_B_4 << 4) | Imm_B_6) & 0x3FF;
+			xa1  =  ((imm_B_4 << 4) | imm_B_6) & 0x3FF;
 			xa2 = ((_bit11_tipoB << 10) | xa1) & 0x7FF; 
-			escrita->Imm_B = ((_bit20_tipoB << 11) | xa2) & 0xFFF; 
+			escrita->Imm_B = ((_bit12_tipoB << 11) | xa2) & 0xFFF;
 			
 			
 /*
@@ -87,6 +87,7 @@ SC_MODULE(decode){
 
 private:
 		contexto *recebimento, *escrita;
+		uint32_t ax1,ax2,xa1,xa2;
 		unsigned short ri, rd;
 		short 	imm_B_6,  imm_B_4,  imm_J_8,  imm_J_10; 
 		short _bit11_tipoB;

@@ -38,19 +38,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: RISC_Multiciclo
+all: SystemC_RISC-V
 
 # Tool invocations
-RISC_Multiciclo: $(OBJS) $(USER_OBJS)
+SystemC_RISC-V: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L/usr/local/systemc/lib-linux64 -o "RISC_Multiciclo" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L/usr/local/systemc-2.3.1a/lib-linux64 -o "SystemC_RISC-V" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(C_UPPER_DEPS)$(CXX_DEPS)$(OBJS)$(CPP_DEPS)$(C_DEPS) RISC_Multiciclo
+	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(C_UPPER_DEPS)$(CXX_DEPS)$(OBJS)$(CPP_DEPS)$(C_DEPS) SystemC_RISC-V
 	-@echo ' '
 
 .PHONY: all clean dependents

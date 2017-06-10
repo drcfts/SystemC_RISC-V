@@ -22,8 +22,8 @@ SC_MODULE(execute){
 			recebimento = decode_execute.read();
 			escrita = recebimento;
 
-			e_rs = recebimento->rs2;
-			e_rt = recebimento-> rs1;
+			e_rs2 = recebimento->rs2;
+			e_rs1 = recebimento-> rs1;
 			e_rd = recebimento->rd;
 			e_op = recebimento-> opcode;
 			e_funct7 = recebimento->funct7;
@@ -66,15 +66,15 @@ SC_MODULE(execute){
 						case f3_BGE:
 						// funcao bGe
 						break;
-						case f3_BLT:
+						case f3_BLTU:
 						// funcao bLTU
 						break;
-						case f3_BGE:
+						case f3_BGEU:
 						// funcao bGeU
 						break; // default?
 									}// fim SWITCHh funct3 - Branch		
 				break;
-				case TIPO_I_RESTO :	
+				case TIPO_I_REST0 :
 				// operacoes loads
 					switch(e_funct3){
 						case f3_LB: 
