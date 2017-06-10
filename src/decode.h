@@ -34,7 +34,6 @@ SC_MODULE(decode){
 			
 			escrita->Imm_I = (ri >> 21) & 0xFFF;
 			escrita->Imm_U = (ri >> 12) & 0xFFFFF;
-			escrita->Imm_S = (funct7,rd); // concatenação .... funciona?			
 			escrita->rs1 = (ri >> 15) & 0x1F;
 			escrita->rs2 = (ri >> 20) & 0x1F;
 			escrita->rd =  (ri >> 7) & 0x1F;
@@ -50,11 +49,23 @@ SC_MODULE(decode){
 		   imm_B_6 = (ri >>8) & 0xF;
 
 		   imm_J_10 = (ri >> 21) & 0x3FF;
-		   imm_J_8 = (ri >>12) & 0xF;
-		   
-		   escrita->Imm_B(_bit12_tipoB,_bit11_tipoB,imm_B_4,imm_B_6);// concatenação .... funciona?	
-     		escrita->Imm_J(_bit20_tipoJ,imm_J_8,_bit11_tipoJ,imm_J_10);// concatenação .... funciona?	
+		   imm_J_8 = (ri >>12) & 0xFF;
 
+			//	Imm_S = (funct7,rd); // concatenação .... funciona?			
+		    // Imm_B(_bit12_tipoB,_bit11_tipoB,Imm_B_4,Imm_B_6);// concatenação .... funciona?	
+     	    // Imm_J(_bit20_tipoJ,Imm_J_8,_bit11_tipoJ,Imm_J_10);// concatenação .... funciona?
+		  	
+			uint32_t ax1,ax2,xa1;
+		    ax1 = ((_bit11_tipoJ << 10)  | Imm_J_10) & 0x7FF;
+		    ax2 = (((Imm_J_8 << 11) | ax1)& 0xFFF) ;
+		    escrita->Imm_J = ((_bit20_tipoJ << 19) | ax2) & 0xFFFFF;
+			///////////////////////////////////	
+			escrita->Imm_S = (((recebimento->funct7 << 5 )|rd) & 0xFFF);
+			/////////////////////////////////////		  	
+			xa1  =  ((Imm_B_4 << 4) | Imm_B_6) & 0x3FF;
+			xa2 = ((_bit11_tipoB << 10) | xa1) & 0x7FF; 
+			escrita->Imm_B = ((_bit20_tipoB << 11) | xa2) & 0xFFF; 
+			
 			
 /*
 			escrita->op = (ri >> 12) & 0xF;
