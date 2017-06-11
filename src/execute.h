@@ -56,15 +56,19 @@ SC_MODULE(execute){
 					switch(e_funct3){
 						case f3_BEQ:
 						// funcao beq
+						if (p_breg->read(e_rs1) == p_breg->read(e_rs2)) recebimento->pc = recebimento->pc + e_imm_B ;
 						break;
 						case f3_BNE:
 						// funcao bne
+						if (p_breg->read(e_rs1) != p_breg->read(e_rs2)) recebimento->pc = recebimento->pc + e_imm_B ;
 						break;
 						case f3_BLT:
 						// funcao bLT
+						if (p_breg->read(e_rs1) < p_breg->read(e_rs2)) recebimento->pc = recebimento->pc + e_imm_B ;
 						break;
 						case f3_BGE:
 						// funcao bGe
+						if (p_breg->read(e_rs1) >= p_breg->read(e_rs2)) recebimento->pc = recebimento->pc + e_imm_B; // 4 já está subentendido né?
 						break;
 						case f3_BLTU:
 						// funcao bLTU
@@ -114,7 +118,8 @@ SC_MODULE(execute){
 				// tipos i e shifts
 					switch(e_funct3){
 						case f3_ADDI:
-						// addi 	
+						// addi 
+						p_breg->write(e_rd, (p_breg->read(e_rs1)+ e_imm_I));	
 						break;
 						case f3_SLTI:
 						// slti
@@ -154,27 +159,33 @@ SC_MODULE(execute){
 								switch(e_funct3){
 									case f3_ADD_SUB:
 									// add
+									 p_breg->write(e_rd, (p_breg->read(e_rs1)+ p_breg->read(e_rs2)));
 									break;	
 									case f3_SLL:
 									// Sll
 									break;	
 									case f3_SLT:
 									// SlT
+									p_breg->write(e_rd, (p_breg->read(e_rs1) < p_breg->read(e_rs2)));
 									break;
 									case f3_SLTU:
 									// SlTU
 									break;
 									case f3_XOR:
 									// xor
+								     p_breg->write(e_rd, (p_breg->read(e_rs1)^ p_breg->read(e_rs2)));
+									break;
 									break;
 									case f3_SRL_SRA:
 									// SRL
 									break;
 									case f3_OR:
 									// or
+									p_breg->write(e_rd, (p_breg->read(e_rs1) | p_breg->read(e_rs2)));
 									break;
 									case f3_AND:
 									// or
+									p_breg->write(e_rd, (p_breg->read(e_rs1) & p_breg->read(e_rs2)));
 									break;
 									
 								} // fim funct 3 -> f7 resto
@@ -183,6 +194,7 @@ SC_MODULE(execute){
 								switch(e_funct3){
          							case f3_ADD_SUB:
 									// sub
+										 p_breg->write(e_rd, (p_breg->read(e_rs1) - p_breg->read(e_rs2)));
 									break;
 									case f3_SRL_SRA:
 									// SRA
