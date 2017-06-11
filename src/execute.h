@@ -260,7 +260,7 @@ SC_MODULE(execute){
 
 									case f3_SLT:
 									// SlT
-									p_breg->write(e_rd, (p_breg->read(e_rs1)<p_breg->read(e_rs2)));
+									p_breg->write(e_rd, (p_breg->read(e_rs1)< p_breg->read(e_rs2)));
 									break;
 
 									case f3_SLTU:
@@ -317,7 +317,6 @@ SC_MODULE(execute){
 
 								}// FIM SWITCH 		
 				p_breg->write(0, 0);
-				escrita->pc = recebimento-> pc;
 				execute_fetch.write(escrita);
 			} //while
 

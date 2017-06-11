@@ -43,7 +43,8 @@ int sc_main(int argc, char* argv[]){
 
 	contexto *dado_entrada = new contexto();
 	//Inicializacao
-	dado_entrada->pc = 0;
+	//Zera PC
+	Breg.write(31, 0);
 	e_f.write(dado_entrada);
 
 //		/* addi $1, 0 */
