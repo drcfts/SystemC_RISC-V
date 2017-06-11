@@ -26,13 +26,12 @@ SC_MODULE(decode){
 			escrita = recebimento;
 
 			ri = recebimento->ri;
-			rd = recebimento->rd;
 
 			escrita->opcode = ri & 0x7F;
 			escrita->funct7 = (ri >> 25) & 0x7F;
 			escrita->funct3 = (ri >> 12) & 0x7;
 			
-			escrita->Imm_I = (ri >> 21) & 0xFFF;
+			escrita->Imm_I = (ri >> 20) & 0xFFF;
 			escrita->Imm_U = (ri >> 12) & 0xFFFFF;
 			escrita->rs1 = (ri >> 15) & 0x1F;
 			escrita->rs2 = (ri >> 20) & 0x1F;
@@ -45,8 +44,8 @@ SC_MODULE(decode){
 		
 			escrita->shamt = (ri >> 20) & 0x1F;
 			
-		   imm_B_4 = (ri >> 25) & 0x3F;
-		   imm_B_6 = (ri >>8) & 0xF;
+		   imm_B_10_5 = (ri >> 25) & 0x3F;
+		   imm_B_4_1 = (ri >>8) & 0xF;
 
 		   imm_J_10 = (ri >> 21) & 0x3FF;
 		   imm_J_8 = (ri >>12) & 0xFF;
@@ -60,9 +59,9 @@ SC_MODULE(decode){
 		    ax2 = (((imm_J_8 << 11) | ax1)& 0xFFF) ;
 		    escrita->Imm_J = ((_bit20_tipoJ << 19) | ax2) & 0xFFFFF;
 			///////////////////////////////////	
-			escrita->Imm_S = (((recebimento->funct7 << 5 )|rd) & 0xFFF);
+			escrita->Imm_S = (((escrita->funct7 << 5 )|rd) & 0xFFF);
 			/////////////////////////////////////		  	
-			xa1  =  ((imm_B_4 << 4) | imm_B_6) & 0x3FF;
+			xa1  =  ((imm_B_10_5 << 4) | imm_B_4_1) & 0x3FF;
 			xa2 = ((_bit11_tipoB << 10) | xa1) & 0x7FF; 
 			escrita->Imm_B = ((_bit12_tipoB << 11) | xa2) & 0xFFF;
 			
@@ -89,7 +88,7 @@ private:
 		contexto *recebimento, *escrita;
 		uint32_t ax1,ax2,xa1,xa2;
 		unsigned short ri, rd;
-		short 	imm_B_6,  imm_B_4,  imm_J_8,  imm_J_10; 
+		short 	imm_B_4_1,  imm_B_10_5,  imm_J_8,  imm_J_10, imm_B_12;
 		short _bit11_tipoB;
 		short _bit12_tipoB;//poderia ser bool
 		short _bit20_tipoJ;//poderia ser bool

@@ -7,7 +7,7 @@
 
 #include "memoria.h"
 
-int16_t mem::read(const unsigned short address){
+int32_t mem::read(const unsigned address){
 	if ((address) > MAX_MEM ){
 		cout << "Endereco fora do intervalo de tamanho da memoria!" << endl;
 		sc_stop();
@@ -15,8 +15,8 @@ int16_t mem::read(const unsigned short address){
 	return mem_ptr[address];
 }
 
-int16_t mem::lw(const unsigned short address, int16_t constante){
-	int16_t _t = address + constante;
+int32_t mem::lw(const unsigned address, int32_t constante){
+	int32_t _t = address + constante;
 
 	if ((_t) > MAX_MEM ){
 			cout << "Endereco fora do intervalo de tamanho da memoria!" << endl;
@@ -26,8 +26,8 @@ int16_t mem::lw(const unsigned short address, int16_t constante){
 	return mem_ptr[(_t)];
 }
 
-void mem::sw(const unsigned short address, int16_t constante, int16_t dado){
-	int16_t _t = address + constante;
+void mem::sw(const unsigned address, int32_t constante, int32_t dado){
+	int32_t _t = address + constante;
 
 	if ((_t) > MAX_MEM ){
 			cout << "Endereco fora do intervalo de tamanho da memoria!" << endl;
@@ -37,7 +37,7 @@ void mem::sw(const unsigned short address, int16_t constante, int16_t dado){
 	mem_ptr[(_t)] = dado;
 }
 
-void mem::write_mem(const unsigned short address, int16_t data){
+void mem::write_mem(const unsigned address, int32_t data){
 	mem_ptr[address] = data;
 }
 
@@ -45,13 +45,13 @@ void mem::dump_mem(int inicio, int fim, char formato){
 	switch (formato) {
 		case 'h':
 		case 'H':
-			for (int16_t i = inicio; i <= fim; i+=2)
-				printf("%d\t%4x\n", i, lw(i, 0));
+			for (int32_t i = inicio; i <= fim; i+=4)
+				printf("%d\t%8x\n", i, lw(i, 0));
 			break;
 		case 'd':
 		case 'D':
-			for (int16_t i = inicio; i <= fim; i+=2)
-				printf("%d\t%4d\n", i, lw(i, 0));
+			for (int32_t i = inicio; i <= fim; i+=4)
+				printf("%d\t%8d\n", i, lw(i, 0));
 			break;
 		default:
 			break;

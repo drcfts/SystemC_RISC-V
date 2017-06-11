@@ -13,17 +13,17 @@
 
 struct mem_if : public sc_interface{
 
-	virtual int16_t
-	read(const unsigned short adress) = 0;
+	virtual int32_t
+	read(const unsigned  adress) = 0;
 
-	virtual int16_t
-	lw(const unsigned short address, int16_t constante) = 0;
-
-	virtual void
-	sw(const unsigned short address, int16_t constante, int16_t dado) = 0;
+	virtual int32_t
+	lw(const unsigned  address, int32_t constante) = 0;
 
 	virtual void
-	write_mem(const unsigned short address, int16_t data) = 0;
+	sw(const unsigned  address, int32_t constante, int32_t dado) = 0;
+
+	virtual void
+	write_mem(const unsigned address, int32_t data) = 0;
 
 	virtual void
 	dump_mem(int inicio, int fim, char formato) = 0;

@@ -29,13 +29,14 @@ SC_MODULE(fetch){
 		while(true){
 			recebimento = execute_fetch.read();
 			escrita = recebimento;
+			PC = (p_breg->read(31));
 
 			#ifdef RASTREIA_PC
-					cout << "PC = " << recebimento->pc << endl;
+					cout << "PC = " << PC << endl;
 			#endif
-					escrita->ri = p_mem->read(recebimento->pc);
-					//16 bits
-					escrita->pc = (recebimento->pc)+1;
+					escrita->ri = p_mem->read(PC);
+					//Registrador 31 = PC
+					p_breg->write(31, PC +1);
 					//Instrucao que nao faz sentido lw $0, $0
 					//Interrompe execucao
 					if(escrita->ri == 0){
@@ -57,6 +58,7 @@ SC_MODULE(fetch){
 private:
 		contexto *escrita;
 		contexto *recebimento;
+		uint32_t PC;
 };
 
 

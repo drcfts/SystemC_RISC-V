@@ -15,28 +15,28 @@
 using namespace std;
 
 //Implementacao da interface de memoria, para se conectar
-//com os modulos do RISC16
+//com os modulos do RISC-V
 struct breg : public sc_module, public breg_if {
 
-	int16_t read(const unsigned short address);
+	int32_t read(const unsigned address);
 
-	void write(const unsigned short address, int16_t dado);
+	void write(const unsigned address, int32_t dado);
 
 	void dump_breg();
 
 	void inicializa(){
-		for(int i =0; i<16; i++){
+		for(int i =0; i<32; i++){
 			breg_ptr[i] = 0;
 		}
 	}
 
 	SC_CTOR(breg){
-		breg_ptr = new int16_t[16];
+		breg_ptr = new int32_t[32];
 		SC_THREAD(inicializa);
 	}
 
 private:
-	int16_t *breg_ptr;
+	int32_t *breg_ptr;
 };
 
 

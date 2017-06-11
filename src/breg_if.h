@@ -13,11 +13,11 @@
 
 struct breg_if : public sc_interface{
 
-	virtual int16_t
-	read(const unsigned short address) = 0;
+	virtual int32_t
+	read(const unsigned address) = 0;
 
 	virtual void
-	write(const unsigned short address, int16_t dado) = 0;
+	write(const unsigned address, int32_t dado) = 0;
 
 	virtual void
 	dump_breg() = 0;

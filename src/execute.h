@@ -34,21 +34,46 @@ SC_MODULE(execute){
 			e_imm_B = recebimento->Imm_B;
 			e_shamt = recebimento->shamt;
 			// switch
+			//Caso R:
+			//	Caso Funct 3:
+			//		Caso Funct 7:
+			//Caso I:
+			//	Caso Funct 3:
+			//		Caso Func 7:
+			//Caso B:
+			//	Caso Funct 3:
+			//Caso S/ADDI...:
+			//	Caso Funct 3:
 			switch(e_op){
 
-				case  u_LUI: 
+				case  TIPO_LUI:
 						// operacao lui
+						//20 MSB pro reg, 12 LSB = 0
+						p_breg->write(e_rd, (e_imm_U<<20) & 0xFFFFF000);
 				break;	
-				case  u_AUIPC: 
+				case  TIPO_AUIPC:
 						// operacao AUIPC
+						//PC = reg(31)
+						_t1 = ((e_imm_U<<20) & 0xFFFFF000) +
+						p_breg->read(31);
+						//Adiciona offset e escreve no PC e no Rd
+						p_breg->write(31, _t1);
+						p_breg->write(e_rd, _t1);
 				break;
 				case  TIPO_JAL: 
 						// operacao JAL
+						p_breg->write(e_rd, p_breg->read(31));
+						p_breg->write(31, e_imm_J);
 				break;
-				case  TIPO_I_JALR: 
-						// operacao JAL
+				case  TIPO_JALR:
+						// operacao JALR
 						if(e_funct3 == 0x0){
-							// operacao JAL				
+							// operacao JALR
+							_t1 = e_imm_I + p_breg->read(e_rs1);
+							//Seta BIT0 como 0
+							_t1 = _t1 & 0xFFFFFFFE;
+							p_breg->write(e_rd, p_breg->read(31));
+							p_breg->write(31, _t1);
 						}
 				break;
 				case  TIPO_B: 
@@ -56,22 +81,54 @@ SC_MODULE(execute){
 					switch(e_funct3){
 						case f3_BEQ:
 						// funcao beq
+							if (p_breg->read(e_rs1) == p_breg->read(e_rs2)) {
+								_t1 = e_imm_B << 1;
+								_t1 += p_breg->read(31);
+								p_breg->write(31, _t1);
+							}
 						break;
 						case f3_BNE:
 						// funcao bne
+							if (p_breg->read(e_rs1) != p_breg->read(e_rs2)) {
+								_t1 = e_imm_B << 1;
+								_t1 += p_breg->read(31);
+								p_breg->write(31, _t1);
+							}
 						break;
 						case f3_BLT:
 						// funcao bLT
+							if (p_breg->read(e_rs1) < p_breg->read(e_rs2)) {
+								_t1 = e_imm_B << 1;
+								_t1 += p_breg->read(31);
+								p_breg->write(31, _t1);
+							}
 						break;
 						case f3_BGE:
 						// funcao bGe
+							if (p_breg->read(e_rs1) >= p_breg->read(e_rs2)) {
+								_t1 = e_imm_B << 1;
+								_t1 += p_breg->read(31);
+								p_breg->write(31, _t1);
+							}
 						break;
 						case f3_BLTU:
 						// funcao bLTU
+							if ((unsigned)p_breg->read(e_rs1) < (unsigned)p_breg->read(e_rs2)) {
+								_t1 = e_imm_B << 1;
+								_t1 += p_breg->read(31);
+								p_breg->write(31, _t1);
+							}
 						break;
 						case f3_BGEU:
 						// funcao bGeU
-						break; // default?
+							if ((unsigned)p_breg->read(e_rs1) >= (unsigned)p_breg->read(e_rs2)) {
+								_t1 = e_imm_B << 1;
+								_t1 += p_breg->read(31);
+								p_breg->write(31, _t1);
+							}
+						break;
+						default:
+						break;
 									}// fim SWITCHh funct3 - Branch		
 				break;
 				case TIPO_I_REST0 :
@@ -114,67 +171,122 @@ SC_MODULE(execute){
 				// tipos i e shifts
 					switch(e_funct3){
 						case f3_ADDI:
-						// addi 	
+							//Se for NOP
+							if(!e_rs1 && !e_rd && !e_imm_I){
+								break;
+							}
+						// addi
+						_t1 = e_imm_I + p_breg->read(e_rs1);
+						p_breg->write(e_rd, _t1);
 						break;
+
 						case f3_SLTI:
 						// slti
+							if(p_breg->read(e_rs1) < e_imm_I){
+								p_breg->write(e_rd, 1);
+							}
+							else{
+								p_breg->write(e_rd, 0);
+							}
 						break;
+
 						case f3_SLTIU:
 						// sltiu
+							//Primeiro faz extensao de sinal p/ 32 bits,
+							//dps trata os dois como sem sinal
+							_t1 = e_imm_I;
+							if((unsigned)p_breg->read(e_rs1) < (unsigned)_t1){
+								p_breg->write(e_rd, 1);
+							}
+							else{
+								p_breg->write(e_rd, 0);
+							}
 						break;
+
 						case f3_XORI:
 						// XORI
+						_t1 = e_imm_I ^ p_breg->read(e_rs1);
+						p_breg->write(e_rd, _t1);
 						break;
+
 						case f3_ORI:
 						// ORI
+						_t1 = e_imm_I | p_breg->read(e_rs1);
+						p_breg->write(e_rd, _t1);
 						break;
+
 						case f3_ANDI:
 						// ANDI
+						_t1 = e_imm_I & p_breg->read(e_rs1);
+						p_breg->write(e_rd, _t1);
 						break;
+
 						case f3_SRLI_SRAI:
 						// srli ou srai
 							if(e_funct7 == f7_SRAI){
 								// srai
+								p_breg->write(e_rd, (p_breg->read(e_rs1)) >> e_shamt);
 							}
 							if(e_funct7 == f7_RESTO_I){
 								// SRLI
+								_t1 =	(unsigned)(p_breg->read(e_rs1)) >> e_shamt;
+								p_breg->write(e_rd, _t1);
 							}
 						break;
+
 						case f3_SLLI:
 						// SLLI
 							if(e_funct7 == f7_RESTO_I ){
 								// SLLI
+								p_breg->write(e_rd, (p_breg->read(e_rs1))<< e_shamt);
 							}
 						break;
+
 				case TIPO_R:
 
 					switch(e_funct7){
-
 							case f7_RESTO:
 								switch(e_funct3){
 									case f3_ADD_SUB:
 									// add
+									p_breg->write(e_rd, (p_breg->read(e_rs1)+ p_breg->read(e_rs2)));
 									break;	
+
 									case f3_SLL:
 									// Sll
+										//Shamt = 5 LSB do registrador RS2
+									p_breg->write(e_rd, (p_breg->read(e_rs1))<< (p_breg->read(e_rs2) & 0x1F));
 									break;	
+
 									case f3_SLT:
 									// SlT
+									p_breg->write(e_rd, (p_breg->read(e_rs1)<p_breg->read(e_rs2)));
 									break;
+
 									case f3_SLTU:
-									// SlTU
+									// SLT unsigned
+									p_breg->write(e_rd, ((unsigned)p_breg->read(e_rs1)<(unsigned)p_breg->read(e_rs2)));
 									break;
+
 									case f3_XOR:
 									// xor
+									p_breg->write(e_rd, (p_breg->read(e_rs1) ^ p_breg->read(e_rs2)));
 									break;
+
 									case f3_SRL_SRA:
 									// SRL
+									_t1 =	(unsigned)(p_breg->read(e_rs1)) >> (p_breg->read(e_rs2) & 0x1F);
+									p_breg->write(e_rd, _t1);
 									break;
+
 									case f3_OR:
 									// or
+									p_breg->write(e_rd, (p_breg->read(e_rs1) | p_breg->read(e_rs2)));
 									break;
+
 									case f3_AND:
-									// or
+									// and
+									p_breg->write(e_rd, (p_breg->read(e_rs1) & p_breg->read(e_rs2)));
 									break;
 									
 								} // fim funct 3 -> f7 resto
@@ -183,9 +295,11 @@ SC_MODULE(execute){
 								switch(e_funct3){
          							case f3_ADD_SUB:
 									// sub
+         							p_breg->write(e_rd, (p_breg->read(e_rs1) - p_breg->read(e_rs2)));
 									break;
 									case f3_SRL_SRA:
 									// SRA
+									p_breg->write(e_rd, (p_breg->read(e_rs1)) >> (p_breg->read(e_rs2) & 0x1F));
 									break;
 								}// fim funct 3 -> f7 SRA_SUB
 
@@ -218,7 +332,8 @@ SC_MODULE(execute){
 private:
 		contexto *recebimento, *escrita;
 		unsigned short e_rs1, e_rs2, e_rd, e_op,e_funct3,e_funct7,e_shamt;
-		short e_imm_I,e_imm_U,e_imm_S,e_imm_B,e_imm_J;
+		int32_t e_imm_I,e_imm_U,e_imm_S,e_imm_B,e_imm_J;
+		int32_t _t1;
 
 
 };
