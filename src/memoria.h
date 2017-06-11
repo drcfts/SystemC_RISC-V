@@ -22,7 +22,19 @@ struct mem : public sc_module, public mem_if {
 
 	int32_t lw(const unsigned address, int32_t constante);
 
+	int32_t lh(const unsigned address, int32_t constante);
+
+	int32_t lhu(const unsigned address, int32_t constante);
+
+	int32_t lb(const unsigned address, int32_t constante);
+
+	int32_t lbu(const unsigned address, int32_t constante);
+
 	void sw(const unsigned address, int32_t constante, int32_t dado);
+
+	void sh(const unsigned address, int32_t constante, int32_t dado);
+
+	void sb(const unsigned address, int32_t constante, int32_t dado);
 
 	void write_mem(const unsigned address, int32_t data);
 

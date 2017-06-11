@@ -19,8 +19,26 @@ struct mem_if : public sc_interface{
 	virtual int32_t
 	lw(const unsigned  address, int32_t constante) = 0;
 
+	virtual int32_t
+	lh(const unsigned  address, int32_t constante) = 0;
+
+	virtual int32_t
+	lbu(const unsigned  address, int32_t constante) = 0;
+
+	virtual int32_t
+	lhu(const unsigned  address, int32_t constante) = 0;
+
+	virtual int32_t
+	lb(const unsigned  address, int32_t constante) = 0;
+
 	virtual void
 	sw(const unsigned  address, int32_t constante, int32_t dado) = 0;
+
+	virtual void
+	sh(const unsigned  address, int32_t constante, int32_t dado) = 0;
+
+	virtual void
+	sb(const unsigned  address, int32_t constante, int32_t dado) = 0;
 
 	virtual void
 	write_mem(const unsigned address, int32_t data) = 0;

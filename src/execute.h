@@ -135,20 +135,25 @@ SC_MODULE(execute){
 				// operacoes loads
 					switch(e_funct3){
 						case f3_LB: 
-						// load byte
-						break;
+							// load byte
+							p_breg->write(e_rd, p_mem->lb(p_breg->read(e_rs1), e_imm_S));
+							break;
 						case f3_LH: 
-						// load half
-						break;
+							// load half
+							p_breg->write(e_rd, p_mem->lh(p_breg->read(e_rs1), e_imm_S));
+							break;
 						case f3_LW: 
-						// load word
-						break;	
+							// load word
+							p_breg->write(e_rd, p_mem->lw(p_breg->read(e_rs1), e_imm_S));
+							break;
 						case f3_LBU: 
-						// load byte unsigned
-						break;
+							// load byte unsigned
+							p_breg->write(e_rd, p_mem->lbu(p_breg->read(e_rs1), e_imm_S));
+							break;
 						case f3_LHU: 
-						// load half unsigned
-						break;
+							// load half unsigned
+							p_breg->write(e_rd, p_mem->lhu(p_breg->read(e_rs1), e_imm_S));
+							break;
 							// default?
 					} // fim switch funct3 - loads
 				break;
@@ -157,12 +162,15 @@ SC_MODULE(execute){
 					switch(e_funct3){
 						case f3_SB: 
 						// store byte
+						p_mem->sb((p_breg->read(e_rs1)), e_imm_S, p_breg->read(e_rs2));
 						break;
 						case f3_SH: 
 						// store half
+						p_mem->sh((p_breg->read(e_rs1)), e_imm_S, p_breg->read(e_rs2));
 						break;
 						case f3_SW: 
 						// store word
+						p_mem->sw((p_breg->read(e_rs1)), e_imm_S, p_breg->read(e_rs2));
 						break;	
 						// default?	
 					} // fim switch funct3 - STORE
