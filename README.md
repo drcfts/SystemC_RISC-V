@@ -139,3 +139,7 @@ Instrução  | Opcode   | Funct7    | Funct3   | Operação            | Impleme
 **JAL**    | 1101111  |  -        |    -     |R[rd] = PC+4;PC=Imm  |<ul><li>- [X] </li></ul>
 
 ---
+
+## Memória Cache
+
+![](Imagens/mapeamento_direto.png)
