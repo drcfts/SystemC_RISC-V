@@ -49,6 +49,39 @@ private:
 	int32_t *mem_ptr;
 };
 
+/****************************
+ * ENDEREÇO VAI TER 32 BITS *
+ ****************************
+ * 	32 bits -------------------
+ *	2 bits-- de dados(coluna) -
+ *  20 bits-- tag		      -
+ *  10 bits indica a linha    -
+ *  ---------------------------
+ *  O TAMANHO DA CACHE VAI SER 1024 = 2¹⁰
+ * -------------------------
+ * Matriz da memória de cache
+ * bit de validade - 0 ou 1  -> indicando se foi preenchida ou nao
+ * Tag -> uma parte do endereço para verificar se é aquele endereço mesmo
+ * Dados -> é onde vai conter os dados como a memória é de 4K, vai ter um vetor
+ * 4dados
+ * **************************************************************
+ *
+ * typedef struct{
+	bool validade;
+	uint32_t tag_cache;
+	int dados[4];
+	uint32_t palavra_coluna;
+	uint32_t linha_endereco_cache;
+
+	}mem_cache;
+*
+*
+*decode_mem(endereco){
+ 	 palavra_coluna = (endereco) & 0x3;
+	 tag_cache = (endereco >> 12) & 0xFFFFF;
+	 linha_endereco_cache = (endereco >> 2) & 0x3FF;
+ }
+*/
 
 
 
