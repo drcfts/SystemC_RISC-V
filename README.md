@@ -143,3 +143,6 @@ Instrução  | Opcode   | Funct7    | Funct3   | Operação            | Impleme
 ## Memória Cache
 
 ![](Imagens/mapeamento_direto.png)
+
+* **base teórica** : http://www.inf.pucrs.br/~emoreno/undergraduate/SI/orgarq/class_files/Aula12.pdf
+http://www.inf.pucrs.br/~emoreno/undergraduate/SI/orgarq/class_files/Aula12.pdf
