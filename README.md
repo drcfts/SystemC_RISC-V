@@ -73,7 +73,7 @@ Instrução  | Opcode   | Funct7    | Funct3   | Operação                     
 
 * Casos Especiais (Utilizando o _shamt_)
 
-> ** shamt = rs2 **
+> **shamt = rs2**
 
 Instrução  | Opcode   | Funct7    | Funct3   | Operação                   | Implementado
 :---------:| :------: | :-------: | :------: |:--------                   |:-----------:
@@ -145,4 +145,3 @@ Instrução  | Opcode   | Funct7    | Funct3   | Operação            | Impleme
 ![](Imagens/mapeamento_direto.png)
 
 * **base teórica** : http://www.inf.pucrs.br/~emoreno/undergraduate/SI/orgarq/class_files/Aula12.pdf
-http://www.inf.pucrs.br/~emoreno/undergraduate/SI/orgarq/class_files/Aula12.pdf
