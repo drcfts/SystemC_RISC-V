@@ -15,13 +15,19 @@ Alunos:
 - [X] Decode
 - [X] Fetch
 - [X] Execute
-- [ ] Breg
+- [X] Breg
 
 ###  Implementar uma memória cache de nível 1 (interna ao processador)
 
 - [ ] Cache
+
 ###  Implementar uma conexão ao roteador (com criação de um módulo Shell)
+
 - [ ] Shell/ Kernel
+
+###  Documento de Projeto
+
+- [ ] [Documento](https://docs.google.com/document/d/1UnnSHb73d-XVqGefhj3pu5bsu_rmoCDGrSrdyJ_c62I/edit)
 
 ---
 ## Processador RISC-V 
