@@ -27,7 +27,7 @@ Alunos:
 
 ###  Documento de Projeto
 
-- [ ] [Documento](https://docs.google.com/document/d/1UnnSHb73d-XVqGefhj3pu5bsu_rmoCDGrSrdyJ_c62I/edit)
+- [X] [Documento](https://docs.google.com/document/d/1UnnSHb73d-XVqGefhj3pu5bsu_rmoCDGrSrdyJ_c62I/edit)
 
 ---
 ## Processador RISC-V 
