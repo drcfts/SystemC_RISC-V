@@ -5,7 +5,7 @@ Projeto Final de Modelagem em Sistemas de Silício - 2017/1
 Alunos:
 
 * Davi Rabbouni de Carvalho Freitas - _150033010_
-* Iuri
+* Iuri de oliveira Parada - 10/0105840
 * Marcos Vinicius Prescendo Tonin - _140153233_
 
 ## Tarefas
@@ -19,7 +19,7 @@ Alunos:
 
 ###  Implementar uma memória cache de nível 1 (interna ao processador)
 
-- [ ] Cache
+- [/] Cache
 
 ###  Implementar uma conexão ao roteador (com criação de um módulo Shell)
 
