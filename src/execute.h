@@ -324,7 +324,7 @@ SC_MODULE(execute){
 
 
 								}// FIM SWITCH 		
-				p_breg->write(0, 0);
+				//p_breg->write(0, 0);
 				execute_fetch.write(escrita);
 			} //while
 

@@ -12,8 +12,8 @@ int32_t breg::read(const unsigned address){
 		cout << "Endereco fora do intervalo de tamanho do Banco de Registradores!" << endl;
 		exit(0);
 	}
-	if (vreg_ptr[0] != 0 ){
-		vreg_ptr[0] = 0;
+	if (breg_ptr[0] != 0 ){
+		breg_ptr[0] = 0;
 	}
 
 	return breg_ptr[address];

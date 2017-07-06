@@ -10,6 +10,10 @@
 
 const short MAX_MEM=1024;
 
+#define MEM_WORD_SIZE 1024
+#define CACHE_WORDS 16
+#define CACHE_BLOCKS 256
+
 typedef struct{
 
 	short ic,
