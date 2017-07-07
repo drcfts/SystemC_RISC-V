@@ -5,7 +5,7 @@ Projeto Final de Modelagem em Sistemas de Silício - 2017/1
 Alunos:
 
 * Davi Rabbouni de Carvalho Freitas - _150033010_
-* Iuri de oliveira Parada - 10/0105840
+* Iuri de Oliveira Parada - _10/0105840_ 
 * Marcos Vinicius Prescendo Tonin - _140153233_
 
 ## Tarefas
@@ -19,7 +19,7 @@ Alunos:
 
 ###  Implementar uma memória cache de nível 1 (interna ao processador)
 
-- [/] Cache
+- [ ] Cache
 
 ###  Implementar uma conexão ao roteador (com criação de um módulo Shell)
 
@@ -146,8 +146,50 @@ Instrução  | Opcode   | Funct7    | Funct3   | Operação            | Impleme
 
 ---
 
+### Teste do Processador 
+
+  Devido a falta de um gerador de linguagem de máquinas para o RISC-V através de um simulador, como por exemplo o MARS para o MIPS, foi desenvolvido uma função que tinha por finalidade gerar uma instrução de acordo com os paramêtros passados. A função será:
+  
+  
+<kbd>uint32_t gerainst(int n, ...)</kbd> 
+
+Sendo seu paramêtro:
+* De retorno do tipo _uint32_t_ **que é um inteiro que representa a código de máquina da instrução requerida** 
+* Já seus paramêtros de entrada serão _inteiros_, sendo que sempre terá 1 argumento que será **OPCODE** e outros que serão ilimitados podendo ser qualquer quantia e que, neste caso, será diferente para cada tipo.  
+
+#### Função _gerainst_ para cada tipo
+
+<!--// AUIPC => IMEDIATO, depois rd (registrador destino)
+// LUI => IMEDIATO, depois rd (registrador destino)
+// TIPO R => FUNCT7,rs2,rs1,FUNCT3,rd.
+// TIPO I => imm, rs1, funct3, rd
+// TIPO S => imm(11-5), rs2, rs1, funct3, imm(4-0)
+//TIPO JALR => imm, rs1,func3,rd
+// TIPO I SHAMT => FUNCT7,shamt,rs1,FUNCT3,rd.
+// JAL => imm(20), imm(10-1), imm(11), imm(19-12), rd
+// Tipo B => imediato, rs2,rs1,funct3
+-->
+
+* **Tipo U** _válido para o AUIPC e LUI_
+
+* **TIPO R**
+
+* **TIPO I** _válido para JALR_
+
+* **TIPO S**
+
+* **TIPO I SHAMT**
+
+* **TIPO J**
+
+* **TIPO B**
+---
 ## Memória Cache
 
 ![](Imagens/mapeamento_direto.png)
 
 * **base teórica** : http://www.inf.pucrs.br/~emoreno/undergraduate/SI/orgarq/class_files/Aula12.pdf
+
+---
+
+## Conexão com a Network Operations Center (**NOC**)
