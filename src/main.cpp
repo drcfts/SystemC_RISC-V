@@ -7,6 +7,8 @@
 #include "memoria.h"
 
 
+short gerainst(int n, ...);
+
 int sc_main(int argc, char* argv[]){
 	fetch Fetch("Fetch");
 	decode Decode("Decode");
@@ -43,5 +45,30 @@ int sc_main(int argc, char* argv[]){
 	sc_start();
 
 	return 0;
+}
+
+short gerainst(int n, ...){
+	short inst = 0;
+
+	va_list ap;
+
+	va_start(ap, n);
+
+	switch (n) {
+		case TIPO_R:
+			inst |= (va_arg(ap, int ) & 0xF) << 12;
+			inst |= (va_arg(ap, int ) & 0xF) << 8;
+			inst |= (va_arg(ap, int ) & 0xF) << 4;
+			inst |= (va_arg(ap, int ) & 0xF);
+			break;
+		case TIPO_J:
+    		inst |= (va_arg(ap, int ) & 0xF) << 12;
+			inst |= (va_arg(ap, int ) & 0xF) << 8;
+			inst |= (va_arg(ap, int ) & 0xFF);
+			break;
+		default:
+			break;
+	}
+	return inst;
 }
 
