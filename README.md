@@ -16,7 +16,7 @@ Alunos:
 - [X] Fetch
 - [X] Execute
 - [X] Breg
-
+- [X] Teste do processador
 ###  Implementar uma memória cache de nível 1 (interna ao processador)
 
 - [ ] Cache
@@ -154,23 +154,11 @@ Instrução  | Opcode   | Funct7    | Funct3   | Operação            | Impleme
 <kbd>uint32_t gerainst(int n, ...)</kbd> 
 
 Sendo seu paramêtro:
-* De retorno do tipo _uint32_t_ **que é um inteiro que representa a código de máquina da instrução requerida** 
+* De retorno do tipo _uint32_t_ **que é um inteiro que representa o código de máquina da instrução requerida** 
 * Já seus paramêtros de entrada serão _inteiros_, sendo que sempre terá 1 argumento que será **OPCODE** e outros que serão ilimitados podendo ser qualquer quantia e que, neste caso, será diferente para cada tipo.  
 
 #### Função _gerainst_ para cada tipo
 
-<!--
-
-
-// Tipo B => imediato, rs2,rs1,funct3
-    xa[20] = gerainst(TIPO_I_REST0,10, 2, f3_LB, 3);
-    xa[21] = gerainst(TIPO_I_REST0,10, 2, f3_LH, 3);
-    xa[22] = gerainst(TIPO_I_REST0,10, 2, f3_LW, 3);
-    xa[23] = gerainst(TIPO_I_REST0,10, 2, f3_LBU, 3);
-    xa[24] = gerainst(TIPO_I_REST0,10, 2, f3_LHU, 3);
-  
-
--->
 
 * **Tipo U** _válido para o AUIPC e LUI_
 
