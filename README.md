@@ -261,7 +261,6 @@ Então o estilo da função será
 
 * **TIPO I** _válido para JALR_
 
-// TIPO I => imm, rs1, funct3, rd
 
 Três campos a mais:
 1.**Imediato**
@@ -322,15 +321,12 @@ Então o estilo da função será
 
 * **TIPO I SHAMT**
  
-    xa[17] = gerainst(TIPO_I2_SHAMT,f7_SRAI,10, 2, f3_SRLI_SRAI, 3);
-    xa[18] = gerainst(TIPO_I2_SHAMT,f7_RESTO,10, 2, f3_SRLI_SRAI, 3);
-    xa[19] = gerainst(TIPO_I2_SHAMT,f7_RESTO,10, 2, f3_SLLI, 3);
 Outro "tipo" de instrução tipo I será deslocamento tendo seus paramêtros: 
 O **funct7**, o **registrador source 2**, **registrador source 1**, **funct3** e por fim **registrador destino**,nesta ordem.
 
 Então a instrução será
 
-> gerainst(_TIPO_I2_SHAMT,**funct7**, **SHAMT**,**registrador source 1**,**funct3** ,**registrador destino**);
+> gerainst(_TIPO_I2_SHAMT_,**funct7**, **SHAMT**,**registrador source 1**,**funct3** ,**registrador destino**);
 
 ```
      gerainst(TIPO_I2_SHAMT,f7_SRAI,10, 2, f3_SRLI_SRAI, 3);
@@ -387,7 +383,6 @@ Então o estilo da função será
 
 * **TIPO J**
 
-
 Este terá dois campos a mais que opcode, o **imediato** e o **registrador destino**, nesta ordem.
 
 Sendo :
@@ -407,6 +402,53 @@ Sendo :
 
 
 * **TIPO B**
+
+Quatro campos a mais:
+1.**Imediato**
+2.**Registrador source 2**
+3.**Registrador source 1** 
+4.**Funct3**.
+
+> gerainst(_TIPO_B_,**Imediato**, **registrador source 2**,**registrador source 1**,**funct3**);
+```
+
+    gerainst(TIPO_B,2314,15,21,f3_BEQ);
+ 
+    >  BEQ $15,$21,2314;
+
+   ------------------------------------------------- 
+    
+    gerainst(TIPO_B,334,1,17,f3_BNE);
+    
+     > BNE $1,$17,334;
+
+    ------------------------------------------------- 
+
+   gerainst(TIPO_B,827,4,21,f3_BLT);
+    
+   > BLT $4,$21,827;
+
+   ------------------------------------------------- 
+
+   gerainst(TIPO_B,888,5,9,f3_BGE);
+    
+   > BGE $5,$9,888;
+
+   ------------------------------------------------- 
+
+   gerainst(TIPO_B,913,19,2,f3_BLTU);
+    
+   > BEQ $19,$2,913;
+
+   ------------------------------------------------- 
+
+   gerainst(TIPO_B,1829,30,29,f3_BGEU);
+ 
+   > BGEU $30,$29,1829;
+
+   ------------------------------------------------- 
+
+```
 ---
 ## Memória Cache
 
