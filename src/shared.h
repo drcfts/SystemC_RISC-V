@@ -32,10 +32,7 @@ typedef struct{
 		    Imm_S,
 		    Imm_B,
 		    Imm_J;
-	bool
-		wr_men, // acho que nao precisa
-		rd_men, // acho que nao precisa 
-		wr_breg; // acho que nao precisa
+
 	//bool
 		// wren;
 

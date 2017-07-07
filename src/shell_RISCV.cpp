@@ -16,14 +16,18 @@ ShellRISCV::ShellRISCV(sc_module_name name) :
 
 void ShellRISCV::_threadRun()
 {
-    int send;
-    char rec;
+    uint32_t* send;
+    uint32_t overhead;
+    uint32_t* rec, *aux;
     for (;;) {
         // Writing
         NoCDebug::printDebug("ShellRISC <- Master", NoCDebug::NI);
         shellIn.read(send);
         std::vector<uint32_t> payload;
-        payload.push_back(send);
+        while(send!=NULL){
+        	payload.push_back(*send);
+        	send++;
+        }
         // DESTINO -> MEMÓRIA, qual o valor ?????????//////
         int payloadDst = 1;
         NoCDebug::printDebug("ShellRISC -> Channel", NoCDebug::NI);
@@ -31,12 +35,26 @@ void ShellRISCV::_threadRun()
         payload.clear();
 
         // Reading
-        int payloadSrc;
+        int payloadSrc = 0;
         NoCDebug::printDebug("ShellRISC <- Channel", NoCDebug::NI);
         receivePayload(payload, &payloadSrc);
-        rec = payload.at(0);
-        NoCDebug::printDebug("ShellRISC -> Master", NoCDebug::NI);
-        shellOut.write(rec);
+        overhead = payload.at(0);
+
+        shellOut.write(&overhead);
+        //Se deu certo
+        if(overhead){
+
+        	NoCDebug::printDebug("ShellRISC -> Master", NoCDebug::NI);
+        	aux = rec;
+        	for(int x=1;x <= 16;x++)
+        	{
+        		*aux = payload.at(x);
+        		aux++;
+
+        	}
+        	shellOut.write(rec);
+        }
+        //Se n deu certo, n escreve de volta para a Cache
 
         // Só lê do Master
 //        int readVal;
