@@ -159,28 +159,252 @@ Sendo seu paramêtro:
 
 #### Função _gerainst_ para cada tipo
 
-<!--// AUIPC => IMEDIATO, depois rd (registrador destino)
-// LUI => IMEDIATO, depois rd (registrador destino)
-// TIPO R => FUNCT7,rs2,rs1,FUNCT3,rd.
-// TIPO I => imm, rs1, funct3, rd
-// TIPO S => imm(11-5), rs2, rs1, funct3, imm(4-0)
-//TIPO JALR => imm, rs1,func3,rd
-// TIPO I SHAMT => FUNCT7,shamt,rs1,FUNCT3,rd.
-// JAL => imm(20), imm(10-1), imm(11), imm(19-12), rd
+<!--
+
+
 // Tipo B => imediato, rs2,rs1,funct3
+    xa[20] = gerainst(TIPO_I_REST0,10, 2, f3_LB, 3);
+    xa[21] = gerainst(TIPO_I_REST0,10, 2, f3_LH, 3);
+    xa[22] = gerainst(TIPO_I_REST0,10, 2, f3_LW, 3);
+    xa[23] = gerainst(TIPO_I_REST0,10, 2, f3_LBU, 3);
+    xa[24] = gerainst(TIPO_I_REST0,10, 2, f3_LHU, 3);
+  
+
 -->
 
 * **Tipo U** _válido para o AUIPC e LUI_
 
+Este terá dois campos a mais que opcode, o **imediato** e o **registrador destino**, nesta ordem.
+
+Sendo :
+
+> gerainst(_TIPO_LUI_ ou _TIPO_AUIPC_, **Imediato**, **registrador destino**);
+
+```
+ gerainst(TIPO_LUI,931,26);
+ 
+ > LUI $26,931;
+ 
+ ------------------------------------------------- 
+ 
+ gerainst(TIPO_AUIPC,931,26);
+ 
+ > AUIPC $26,931;
+ 
+ -------------------------------------------------
+ ```
+
 * **TIPO R**
+
+Terá cinco campos a mais o **funct7**, o **registrador source 2**, **registrador source 1**, **funct3** e por fim **registrador destino**,nesta ordem.
+
+Então o estilo da função será
+
+> gerainst(_TIPO_R_,**funct7**, **registrador source 2**,**registrador source 1**,**funct3** ,**registrador destino**);
+
+```
+    
+    gerainst(TIPO_R,f7_RESTO,30,12,f3_ADD_SUB,7);
+     
+     > ADD $7,$30,$12;
+    
+    -------------------------------------------------
+    
+    gerainst(TIPO_R,f7_SRA_SUB,23,11,f3_ADD_SUB,3);
+     
+     > SUB $3,$23,$11;
+    
+    ------------------------------------------------- 
+    
+    gerainst(TIPO_R,f7_SRA_SUB,7,29,f3_SRL_SRA,5);
+     
+     > SRA $5,$7,$29;
+    
+    ------------------------------------------------- 
+    
+    gerainst(TIPO_R,f7_RESTO,17,2,f3_SRL_SRA,17);
+     
+     > SRL $17,$17,$2;
+    
+    ------------------------------------------------- 
+    
+    gerainst(TIPO_R,f7_RESTO,3,4,f3_SLL,5);
+     
+     > SLL $5,$3,$4;
+    
+    -------------------------------------------------      
+    
+    gerainst(TIPO_R,f7_RESTO,17,19,f3_SLT,12);
+     
+     > SLT $12,$17,$19;
+    
+    -------------------------------------------------      
+     
+     gerainst(TIPO_R,f7_RESTO,2,2,f3_XOR,1);
+     
+     > XOR $1,$2,$2;
+    
+    -------------------------------------------------     
+     
+     gerainst(TIPO_R,f7_RESTO,11,1,f3_AND,22);
+     
+     > AND $22,$17,$2;
+     
+    ------------------------------------------------- 
+     
+     gerainst(TIPO_R,f7_RESTO,28,21,f3_OR,6);
+    
+    > OR $6,$28,$21;
+    
+    -------------------------------------------------
+```
 
 * **TIPO I** _válido para JALR_
 
-* **TIPO S**
+// TIPO I => imm, rs1, funct3, rd
+
+Três campos a mais:
+1.**Imediato**
+2.**Registrador source 1**
+3.**Funct3** 
+4.**Registrador destino**.
+
+Então o estilo da função será
+
+> gerainst(_TIPO_I_,**imediato**, **registrador source 1**, **funct3** ,**registrador destino**);
+
+
+```
+     gerainst(TIPO_I2_SHAMT,10, 2, f3_ADDI, 3);
+     
+     > ADDI $3, $2, 10;
+     
+     -------------------------------------------------
+     
+     gerainst(TIPO_I2_SHAMT,10, 2, f3_SLTI, 3);
+     
+     > SLTI $3, $2, 10;
+     
+     -------------------------------------------------
+     
+     gerainst(TIPO_I2_SHAMT,10, 2, f3_SLTIU, 3);
+     
+     > SLTIU $3, $2, 10;
+     
+     -------------------------------------------------
+     
+     gerainst(TIPO_I2_SHAMT,10, 2, f3_XORI, 3);
+     
+     > XORI $3, $2, 10;
+     
+     -------------------------------------------------
+     
+     gerainst(TIPO_I2_SHAMT,10, 2, f3_ORI, 3);
+     
+     > ORI $3, $2, 10;
+     
+     -------------------------------------------------
+     
+     gerainst(TIPO_I2_SHAMT,10, 2, f3_ANDI, 3);
+     
+     > ANDI $3, $2, 10;
+     
+     -------------------------------------------------
+     
+     gerainst(TIPO_JALR,10, 2,0,3);
+     
+     > JALR $3, $2, 10;
+     
+     -------------------------------------------------
+
+
+```
 
 * **TIPO I SHAMT**
+ 
+    xa[17] = gerainst(TIPO_I2_SHAMT,f7_SRAI,10, 2, f3_SRLI_SRAI, 3);
+    xa[18] = gerainst(TIPO_I2_SHAMT,f7_RESTO,10, 2, f3_SRLI_SRAI, 3);
+    xa[19] = gerainst(TIPO_I2_SHAMT,f7_RESTO,10, 2, f3_SLLI, 3);
+Outro "tipo" de instrução tipo I será deslocamento tendo seus paramêtros: 
+O **funct7**, o **registrador source 2**, **registrador source 1**, **funct3** e por fim **registrador destino**,nesta ordem.
+
+Então a instrução será
+
+> gerainst(_TIPO_I2_SHAMT,**funct7**, **SHAMT**,**registrador source 1**,**funct3** ,**registrador destino**);
+
+```
+     gerainst(TIPO_I2_SHAMT,f7_SRAI,10, 2, f3_SRLI_SRAI, 3);
+     
+     > SRAI $3, $2, 10;
+     
+     -------------------------------------------------
+     
+     gerainst(TIPO_I2_SHAMT,f7_RESTO,10, 2, f3_SRLI_SRAI, 3);
+     
+     > SRLI $3, $2, 10;
+          
+     -------------------------------------------------
+   
+     gerainst(TIPO_I2_SHAMT,f7_RESTO,10, 2, f3_SLLI, 3);
+      
+      > SLLI $3, $2, 10;
+      
+     -------------------------------------------------
+    
+```
+   
+
+* **TIPO S**
+
+ TIPO S => imm(11-5), rs2, rs1, funct3, imm(4-0)
+Terá quatro campos a mais o **imediato**, o **registrador source 2**, **registrador source 1**, **funct3**,nesta ordem.
+
+Então o estilo da função será
+
+> gerainst(_TIPO_S_,**imediato**, **registrador source 2**,**registrador source 1**,**funct3**);
+
+
+```
+     gerainst(TIPO_S,15, 2, 3, f3_SW);
+     
+     > SW $2, $3, 10;
+     
+     -------------------------------------------------
+     
+     gerainst(TIPO_S,15, 2, 3, f3_SH);
+     
+     > SH $2, $3, 10;
+     
+     -------------------------------------------------
+     
+     gerainst(TIPO_S,15, 2, 3, f3_SB);
+     
+     > SB $2, $3, 10;
+    
+     -------------------------------------------------
+    
+```
 
 * **TIPO J**
+
+
+Este terá dois campos a mais que opcode, o **imediato** e o **registrador destino**, nesta ordem.
+
+Sendo :
+
+> gerainst(_TIPO_JAL_, **Imediato**, **registrador destino**);
+
+
+
+```
+ gerainst(TIPO_JAL,255,5);
+ 
+ > JAL $5,255;
+
+------------------------------------------------- 
+ ```
+
+
 
 * **TIPO B**
 ---
