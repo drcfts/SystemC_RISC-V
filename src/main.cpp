@@ -1,4 +1,3 @@
-
 #include "fetch.h"
 #include "decode.h"
 #include "execute.h"
@@ -182,7 +181,6 @@ uint32_t gerainst(int n, ...){
 	return inst;
 }
 
-
 std::string hex_para_decimal(uint32_t hex12){
 	std::string sRet="";
 	std::string x;
@@ -221,4 +219,3 @@ std::string hex_para_decimal(uint32_t hex12){
 	}
 	return sRet;
 }
-
