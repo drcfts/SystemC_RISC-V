@@ -40,9 +40,12 @@ struct mem : public sc_module, public mem_if {
 
 	void dump_mem(int inicio, int fim, char formato);
 
+	void interpreta_Noc();
 
 	SC_CTOR(mem){
 		mem_ptr = new int32_t[MAX_MEM];
+		SC_THREAD(interpreta_Noc);
+
 	}
 
 private:

@@ -7,6 +7,11 @@
 
 #include "memoria.h"
 
+void mem::interpreta_Noc(){
+	//Uma thread para tomar as decisoes da memoria
+	//Recebe um vetor de payload da shell (comando,endereco)
+
+}
 int32_t mem::read(const unsigned address){
 	if ((address) > MAX_MEM ){
 		cout << "Endereco fora do intervalo de tamanho da memoria!" << endl;

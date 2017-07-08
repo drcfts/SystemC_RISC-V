@@ -16,17 +16,17 @@ ShellRISCV::ShellRISCV(sc_module_name name) :
 
 void ShellRISCV::_threadRun()
 {
-    uint32_t* send;
+	std::vector<uint32_t>   send, rec;
     uint32_t overhead;
-    uint32_t* rec, *aux;
     for (;;) {
         // Writing
         NoCDebug::printDebug("ShellRISC <- Master", NoCDebug::NI);
         shellIn.read(send);
         std::vector<uint32_t> payload;
-        while(send!=NULL){
-        	payload.push_back(*send);
-        	send++;
+        //Payload eh um vetor, send tbm
+        //Pega elemento a elemento do send e manda pro payload
+        for (unsigned i=0; i<send.size(); i++){
+            payload.push_back(send.at(i));
         }
         // DESTINO -> MEMÓRIA, qual o valor ?????????//////
         int payloadDst = 1;
@@ -40,20 +40,20 @@ void ShellRISCV::_threadRun()
         receivePayload(payload, &payloadSrc);
         overhead = payload.at(0);
 
-        shellOut.write(&overhead);
+        rec.push_back(overhead);
         //Se deu certo
         if(overhead){
 
         	NoCDebug::printDebug("ShellRISC -> Master", NoCDebug::NI);
-        	aux = rec;
-        	for(int x=1;x <= 16;x++)
-        	{
-        		*aux = payload.at(x);
-        		aux++;
-
+        	//Como os dois sao vetores, copia-se elemento a elemento
+        	for (unsigned i=0; i<payload.size(); i++){
+        		rec.push_back(payload.at(i));
         	}
         	shellOut.write(rec);
         }
+        //Apos fim das operacoes, limpa payload
+        payload.clear();
+
         //Se n deu certo, n escreve de volta para a Cache
 
         // Só lê do Master
