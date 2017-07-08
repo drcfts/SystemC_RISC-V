@@ -1,3 +1,4 @@
+
 /*
  * shell_RISCV.cpp
  *
@@ -65,11 +66,4 @@ void ShellRISCV::_threadRun()
     }
 }
 
-    std::vector<uint32_t> monta_send(uint32_t adress,uint32_t commando)
-    {
-     std::vector<uint32_t> aux,ans;   
-        aux = (commando & 0xFF);
-        ans = ((adress & 0x3FF) << 8) | aux;
-        return ans;
-    }
 

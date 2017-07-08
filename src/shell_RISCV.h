@@ -16,7 +16,6 @@ class ShellRISCV : public sc_module, public NetworkInterfaceFrontEndBase
     SC_HAS_PROCESS(ShellRISCV);
 
     void _threadRun();
-   	std::vector<uint32_t> monta_send(uint32_t adress,uint32_t commando);
 
 public:
     // IO

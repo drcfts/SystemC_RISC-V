@@ -138,6 +138,21 @@ enum opcodes_func_stores_loads {
 	_SH=0x29,	
 };
 
+std::vector<uint32_t> monta_send(uint32_t comando,uint32_t adress,uint32_t constante,uint32_t dado)
+    		{
+	std::vector<uint32_t> ans;
+	// inserindo comando na primeira posicao do vector
+	ans.at(0)=comando;
+	// inserindo adress na segunda posicao do vector
+	ans.at(1)= adress;
+	// inserindo constante na terceira posicao do vector
+	ans.at(2)= constante;
+	// por fim insere o dado
+	ans.at(3)= dado;
+
+	return ans;
+    		}
+
 
 
 #endif /* SHARED_H_ */

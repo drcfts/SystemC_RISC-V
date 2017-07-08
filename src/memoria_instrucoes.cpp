@@ -49,6 +49,7 @@ void mem_inst::sb(const unsigned address, int32_t constante, int32_t dado){
 
 void mem_inst::write_mem(const unsigned address, int32_t data){
 	mem_ptr[address] = data;
+
 }
 
 void mem_inst::dump_mem(int inicio, int fim, char formato){
