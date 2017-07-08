@@ -8,8 +8,96 @@
 #include "memoria.h"
 
 void mem::interpreta_Noc(){
+	std::vector<uint32_t>   send, rec;
+	uint32_t address, dado;
+	int32_t constante;
+	int32_t dado_retorno, flag_salvou = 0;
+	enum opcodes_func_stores_loads cmd;
+	int erro = 0;
+
 	//Uma thread para tomar as decisoes da memoria
 	//Recebe um vetor de payload da shell (comando,endereco)
+	for( ; ;){
+		memIn.read(rec);
+		cmd = rec.at(0);
+		switch(cmd){
+		//Se for operacoes Load, recebe address, constante
+		case _LW:
+			address = rec.at(1);
+			//Faz o typecast pq pode ser negativo
+			constante = (int32_t)rec.at(2);
+			dado_retorno = lw(address, constante);
+			break;
+		case _LB:
+			address = rec.at(1);
+			//Faz o typecast pq pode ser negativo
+			constante = (int32_t)rec.at(2);
+			dado_retorno = lb(address, constante);
+			break;
+		case _LH:
+			address = rec.at(1);
+			//Faz o typecast pq pode ser negativo
+			constante = (int32_t)rec.at(2);
+			dado_retorno = lh(address, constante);
+			break;
+		case _LBU:
+			address = rec.at(1);
+			//Faz o typecast pq pode ser negativo
+			constante = (int32_t)rec.at(2);
+			dado_retorno = lbu(address, constante);
+			break;
+		case _LHU:
+			address = rec.at(1);
+			//Faz o typecast pq pode ser negativo
+			constante = (int32_t)rec.at(2);
+			dado_retorno = lhu(address, constante);
+			break;
+	    //Saves recebem, alem disso, os dados
+		case _SW:
+			address = rec.at(1);
+			//Faz o typecast pq pode ser negativo
+			constante = (int32_t)rec.at(2);
+			dado = rec.at(3);
+			sw(address, constante, dado);
+			flag_salvou = 1;
+			break;
+		case _SB:
+			address = rec.at(1);
+			//Faz o typecast pq pode ser negativo
+			constante = (int32_t)rec.at(2);
+			dado = rec.at(3);
+			sb(address, constante,dado);
+			flag_salvou = 1;
+			break;
+		case _SH:
+			address = rec.at(1);
+			//Faz o typecast pq pode ser negativo
+			constante = (int32_t)rec.at(2);
+			dado = rec.at(3);
+			sh(address, constante,dado);
+			flag_salvou = 1;
+			break;
+		default:
+			erro = 1;
+			break;
+		} //switch
+		if(erro){
+			//Vetor manda que houve erro apenas (para a Shell)
+			send.at(0) = 0;
+			erro = 0;
+		}
+		else{
+			//Caso n haja erro
+			send.at(0) = 1;
+			//Se for load, deve mandar dado tambem
+			if(!flag_salvou){
+				send.at(1) = dado_retorno;
+				flag_salvou = 0;
+			}
+		}
+		memOut.write(send);
+		send.clear();
+	} //for
 
 }
 int32_t mem::read(const unsigned address){

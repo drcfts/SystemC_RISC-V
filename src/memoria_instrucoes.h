@@ -1,53 +1,35 @@
 /*
- * memoria.h
+ * memoria_instrucoes.h
  *
- *  Created on: 14 de mai de 2017
+ *  Created on: 8 de jul de 2017
  *      Author: drcfts
  */
 
-#ifndef MEMORIA_H_
-#define MEMORIA_H_
+#ifndef SRC_MEMORIA_INSTRUCOES_H_
+#define SRC_MEMORIA_INSTRUCOES_H_
 
 #include <systemc.h>
+#include "mem_if.h"
 #include "shared.h"
 
 using namespace std;
 
-//Memoria que se conectar a NoC
-struct mem : public sc_module{
+//Implementacao da interface de memoria, para se conectar
+//com os modulos do RISC-V
+struct mem_inst : public sc_module, public mem_if {
 
 	// Conexao com a NoC
-	sc_fifo_out< std::vector<uint32_t> > memOut;
-	sc_fifo_in< std::vector<uint32_t> > memIn;
+	sc_fifo_out< std::vector<uint32_t> > shellIn;
+	sc_fifo_in< std::vector<uint32_t> > shellOut;
 
 	int32_t read(const unsigned adress);
-
-	int32_t lw(const unsigned address, int32_t constante);
-
-	int32_t lh(const unsigned address, int32_t constante);
-
-	int32_t lhu(const unsigned address, int32_t constante);
-
-	int32_t lb(const unsigned address, int32_t constante);
-
-	int32_t lbu(const unsigned address, int32_t constante);
-
-	void sw(const unsigned address, int32_t constante, int32_t dado);
-
-	void sh(const unsigned address, int32_t constante, int32_t dado);
-
-	void sb(const unsigned address, int32_t constante, int32_t dado);
 
 	void write_mem(const unsigned address, int32_t data);
 
 	void dump_mem(int inicio, int fim, char formato);
 
-	void interpreta_Noc();
-
-	SC_CTOR(mem){
+	SC_CTOR(mem_inst){
 		mem_ptr = new int32_t[MAX_MEM];
-		SC_THREAD(interpreta_Noc);
-
 	}
 
 private:
@@ -90,4 +72,4 @@ private:
 
 
 
-#endif /* MEMORIA_H_ */
+#endif /* SRC_MEMORIA_INSTRUCOES_H_ */
