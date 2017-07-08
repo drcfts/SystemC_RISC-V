@@ -124,5 +124,20 @@ enum funct7_tipoR{
 f7_RESTO = 0x00,
 f7_SRA_SUB = 0x20
 };
+// por simplicidade será
+// propostos os mesmos opcodes do MIPS 
+
+enum opcodes_func_stores_loads {	
+	_LW=0x23, 
+	_LB=0x20,
+	_LH=0x21, 
+	_LBU=0x24,
+	_LHU=0x25,	
+	_SW=0x2B,	
+	_SB=0x28, 
+	_SH=0x29,	
+};
+
+
 
 #endif /* SHARED_H_ */
