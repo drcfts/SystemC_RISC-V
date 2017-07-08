@@ -452,7 +452,7 @@ Quatro campos a mais:
 
 Para os módulos como processadores, memória se conectarem com a NoC deve ser ter uma conexão passando pelo Shell e Kernel. para cada módulo IP-core.
 
-* Shell : Especifico para cada IP-core e é responsável por adaptar os sinais de dados,controle e endereços do módulo para um formato padrão que será transmitido para outro IP-core, no caso do processador ele envia os dados para memória ou DMA . Os canais entre módulo e o shell serão **dado**,**endereço** e **comando**(load ou store).
+* Shell : Especifico para cada IP-core e é responsável por adaptar os sinais de dados,controle e endereços do módulo para um formato padrão que será transmitido para outro IP-core, no caso do processador ele envia os dados para memória ou DMA . Os canais entre módulo e o shell serão e **comando**(load ou store), **endereço** e **dado**(SE FOR STORE .... se for load terá que ser recebido um dado).
 
 * Kernel : Módulo comum para masters e slaves.
 
