@@ -15,6 +15,37 @@ int32_t mem_inst::read(const unsigned address){
 	return mem_ptr[address];
 }
 
+int32_t mem_inst::lw(const unsigned address, int32_t constante){
+	return 0;
+}
+
+int32_t mem_inst::lh(const unsigned address, int32_t constante){
+	return 0;
+}
+
+int32_t mem_inst::lb(const unsigned address, int32_t constante){
+	return 0;
+}
+
+int32_t mem_inst::lhu(const unsigned address, int32_t constante){
+	return 0;
+}
+
+int32_t mem_inst::lbu(const unsigned address, int32_t constante){
+	return 0;
+}
+
+void mem_inst::sw(const unsigned address, int32_t constante, int32_t dado){
+}
+
+void mem_inst::sh(const unsigned address, int32_t constante, int32_t dado)
+{
+
+}
+
+void mem_inst::sb(const unsigned address, int32_t constante, int32_t dado){
+
+}
 
 void mem_inst::write_mem(const unsigned address, int32_t data){
 	mem_ptr[address] = data;
@@ -36,5 +67,7 @@ void mem_inst::dump_mem(int inicio, int fim, char formato){
 			break;
 	}
 }
+
+
 
 

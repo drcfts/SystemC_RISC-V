@@ -1,5 +1,6 @@
-src/cache.o: ../src/cache.cpp ../src/cache.h \
- /usr/local/systemc/include/systemc.h /usr/local/systemc/include/systemc \
+src/memoria_instrucoes.o: ../src/memoria_instrucoes.cpp \
+ ../src/memoria_instrucoes.h /usr/local/systemc/include/systemc.h \
+ /usr/local/systemc/include/systemc \
  /usr/local/systemc/include/sysc/kernel/sc_cmnhdr.h \
  /usr/local/systemc/include/sysc/kernel/../packages/boost/config.hpp \
  /usr/local/systemc/include/sysc/packages/boost/config/user.hpp \
@@ -113,9 +114,9 @@ src/cache.o: ../src/cache.cpp ../src/cache.h \
  /usr/local/systemc/include/sysc/utils/sc_vector.h \
  /usr/local/systemc/include/sysc/packages/boost/config.hpp \
  /usr/local/systemc/include/sysc/packages/boost/utility/enable_if.hpp \
- ../src/shared.h ../src/memoria_instrucoes.h ../src/mem_if.h
+ ../src/mem_if.h ../src/shared.h
 
-../src/cache.h:
+../src/memoria_instrucoes.h:
 
 /usr/local/systemc/include/systemc.h:
 
@@ -347,8 +348,6 @@ src/cache.o: ../src/cache.cpp ../src/cache.h \
 
 /usr/local/systemc/include/sysc/packages/boost/utility/enable_if.hpp:
 
-../src/shared.h:
-
-../src/memoria_instrucoes.h:
-
 ../src/mem_if.h:
+
+../src/shared.h:

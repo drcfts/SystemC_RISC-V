@@ -3,7 +3,7 @@
 #include "execute.h"
 #include "stdarg.h"
 #include "breg.h"
-#include "memoria.h"
+#include "memoria_instrucoes.h"
 
 std::string hex_para_decimal(uint32_t hex12);
 uint32_t gerainst(int n, ...);
@@ -14,7 +14,7 @@ int sc_main(int argc, char* argv[]){
 	decode Decode("Decode");
 	execute Execute("Execute");
 
-	mem Memoria("Memoria");
+	mem_inst Memoria("Memoria");
 	breg Breg("Breg");
 
 	sc_fifo < contexto* > e_f( 1);

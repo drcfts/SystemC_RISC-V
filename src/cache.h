@@ -1,6 +1,6 @@
 #include "systemc.h"
 #include "shared.h"
-#include "memoria.h"
+#include "memoria_instrucoes.h"
 
 #ifndef CACHE_H_
 #define CACHE_H_

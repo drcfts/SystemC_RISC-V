@@ -113,7 +113,7 @@ src/memoria.o: ../src/memoria.cpp ../src/memoria.h \
  /usr/local/systemc/include/sysc/utils/sc_vector.h \
  /usr/local/systemc/include/sysc/packages/boost/config.hpp \
  /usr/local/systemc/include/sysc/packages/boost/utility/enable_if.hpp \
- ../src/mem_if.h ../src/shared.h
+ ../src/shared.h
 
 ../src/memoria.h:
 
@@ -346,7 +346,5 @@ src/memoria.o: ../src/memoria.cpp ../src/memoria.h \
 /usr/local/systemc/include/sysc/packages/boost/config.hpp:
 
 /usr/local/systemc/include/sysc/packages/boost/utility/enable_if.hpp:
-
-../src/mem_if.h:
 
 ../src/shared.h:

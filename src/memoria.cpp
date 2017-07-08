@@ -12,7 +12,7 @@ void mem::interpreta_Noc(){
 	uint32_t address, dado;
 	int32_t constante;
 	int32_t dado_retorno, flag_salvou = 0;
-	enum opcodes_func_stores_loads cmd;
+	uint32_t cmd;
 	int erro = 0;
 
 	//Uma thread para tomar as decisoes da memoria

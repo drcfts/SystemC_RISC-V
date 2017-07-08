@@ -8,6 +8,7 @@ CPP_SRCS += \
 ../src/cache.cpp \
 ../src/main.cpp \
 ../src/memoria.cpp \
+../src/memoria_instrucoes.cpp \
 ../src/networkinterfacefrontendbase.cpp \
 ../src/shell_Memoria.cpp \
 ../src/shell_RISCV.cpp 
@@ -17,6 +18,7 @@ OBJS += \
 ./src/cache.o \
 ./src/main.o \
 ./src/memoria.o \
+./src/memoria_instrucoes.o \
 ./src/networkinterfacefrontendbase.o \
 ./src/shell_Memoria.o \
 ./src/shell_RISCV.o 
@@ -26,6 +28,7 @@ CPP_DEPS += \
 ./src/cache.d \
 ./src/main.d \
 ./src/memoria.d \
+./src/memoria_instrucoes.d \
 ./src/networkinterfacefrontendbase.d \
 ./src/shell_Memoria.d \
 ./src/shell_RISCV.d 

@@ -114,7 +114,7 @@ src/main.o: ../src/main.cpp ../src/fetch.h \
  /usr/local/systemc/include/sysc/packages/boost/config.hpp \
  /usr/local/systemc/include/sysc/packages/boost/utility/enable_if.hpp \
  ../src/shared.h ../src/mem_if.h ../src/breg_if.h ../src/decode.h \
- ../src/execute.h ../src/breg.h ../src/memoria.h
+ ../src/execute.h ../src/breg.h ../src/memoria_instrucoes.h
 
 ../src/fetch.h:
 
@@ -360,4 +360,4 @@ src/main.o: ../src/main.cpp ../src/fetch.h \
 
 ../src/breg.h:
 
-../src/memoria.h:
+../src/memoria_instrucoes.h:
