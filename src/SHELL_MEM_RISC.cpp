@@ -8,7 +8,7 @@ int32_t shell_mem_risc :: lw(const unsigned address, int32_t constante){
 std::vector<uint32_t> aux_send,word_tmp;
 uint32_t _flag , _dado;
     // enviando o payload
-    aux_send = monta_send(_LW,address,constante,0);
+    aux_send = monta_send_load(_LW,address,constante);
     shellMEM_RISC_Out.write(aux_send);
     // recebendo o payload
     word_tmp = shellMEM_RISC_In.read();
@@ -30,7 +30,7 @@ int32_t shell_mem_risc :: lh(const unsigned address, int32_t constante)
 std::vector<uint32_t> aux_send,word_tmp;
 uint32_t _flag , _dado;
     // enviando o payload
-    aux_send = monta_send(_LH,address,constante,0);
+    aux_send = monta_send_load(_LH,address,constante);
     shellMEM_RISC_Out.write(aux_send);
     // recebendo o payload
     word_tmp = shellMEM_RISC_In.read();
@@ -48,7 +48,7 @@ uint32_t _flag , _dado;
 std::vector<uint32_t> aux_send,word_tmp;
 uint32_t _flag , _dado;
     // enviando o payload
-    aux_send = monta_send(_LHU,address,constante,0);
+    aux_send = monta_send_load(_LHU,address,constante);
     shellMEM_RISC_Out.write(aux_send);
     // recebendo o payload
     word_tmp = shellMEM_RISC_In.read();
@@ -68,7 +68,7 @@ uint32_t _flag , _dado;
 	std::vector<uint32_t> aux_send,word_tmp;
 	uint32_t _flag , _dado;
     // enviando o payload
-    aux_send = monta_send(_LB,address,constante,0);
+    aux_send = monta_send_load(_LB,address,constante);
     shellMEM_RISC_Out.write(aux_send);
     // recebendo o payload
     word_tmp = shellMEM_RISC_In.read();
@@ -88,7 +88,7 @@ uint32_t _flag , _dado;
 std::vector<uint32_t> aux_send,word_tmp;
 uint32_t _flag , _dado;
     // enviando o payload
-    aux_send = monta_send(_LBU,address,constante,0);
+    aux_send = monta_send_load(_LBU,address,constante);
     shellMEM_RISC_Out.write(aux_send);
     // recebendo o payload
     word_tmp = shellMEM_RISC_In.read();
@@ -108,7 +108,7 @@ uint32_t _flag , _dado;
 	std::vector<uint32_t> aux_send,word_tmp;
 	uint32_t _flag , _dado;
     // enviando o payload
-    aux_send = monta_send(_SW,address,constante,dado);
+    aux_send = monta_send_store(_SW,address,constante,dado);
     shellMEM_RISC_Out.write(aux_send);
     // recebendo o payload
     word_tmp = shellMEM_RISC_In.read();
@@ -129,7 +129,7 @@ uint32_t _flag , _dado;
 	std::vector<uint32_t> aux_send,word_tmp;
 	uint32_t _flag , _dado;
     // enviando o payload
-    aux_send = monta_send(_SH,address,constante,dado);
+    aux_send = monta_send_store(_SH,address,constante,dado);
     shellMEM_RISC_Out.write(aux_send);
     // recebendo o payload
     word_tmp = shellMEM_RISC_In.read();
@@ -152,7 +152,7 @@ uint32_t _flag , _dado;
 	std::vector<uint32_t> aux_send,word_tmp;
 	uint32_t _flag , _dado;
     // enviando o payload
-    aux_send = monta_send(_SB,address,constante,dado);
+    aux_send = monta_send_store(_SB,address,constante,dado);
     shellMEM_RISC_Out.write(aux_send);
     // recebendo o payload
     word_tmp = shellMEM_RISC_In.read();
