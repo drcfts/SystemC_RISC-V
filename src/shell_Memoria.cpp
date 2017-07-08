@@ -36,3 +36,4 @@ void MemoriaShell::_threadRun()
         payload.clear();
     }
 }
+
