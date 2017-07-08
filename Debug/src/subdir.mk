@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/SHELL_MEM_RISC.cpp \
 ../src/breg.cpp \
 ../src/cache.cpp \
 ../src/main.cpp \
@@ -14,6 +15,7 @@ CPP_SRCS += \
 ../src/shell_RISCV.cpp 
 
 OBJS += \
+./src/SHELL_MEM_RISC.o \
 ./src/breg.o \
 ./src/cache.o \
 ./src/main.o \
@@ -24,6 +26,7 @@ OBJS += \
 ./src/shell_RISCV.o 
 
 CPP_DEPS += \
+./src/SHELL_MEM_RISC.d \
 ./src/breg.d \
 ./src/cache.d \
 ./src/main.d \

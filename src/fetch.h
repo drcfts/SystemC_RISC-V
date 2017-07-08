@@ -21,6 +21,7 @@
 SC_MODULE(fetch){
 	sc_port <mem_if> p_mem;
 	sc_port <breg_if> p_breg;
+	// sc_port<shell_mem_risc_if> p_shell;
 
 	sc_fifo_in < contexto*> execute_fetch;
 	sc_fifo_out < contexto* > fetch_decode;

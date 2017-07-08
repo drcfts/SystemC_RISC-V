@@ -2,20 +2,26 @@
 ' * execute.h
  *
  *  Created on: 4 de mai de 2017
- *      Author: drcfts
+ *      Author: drcfts e litlle toin
  */
+
 
 #include <systemc.h>
 #include "breg_if.h"
 #include "mem_if.h"
 #include "shared.h"
 
+//#include "SHELL_MEM_RISC_if.h"
+
 SC_MODULE(execute){
 	sc_port <mem_if> p_mem;
 	sc_port <breg_if> p_breg;
 
+	// sc_port<shell_mem_risc_if> p_shell;
+
 	sc_fifo_in < contexto* > decode_execute;
 	sc_fifo_out < contexto*> execute_fetch;
+
 
 	void execute_method(){
 		while(true){
@@ -137,22 +143,31 @@ SC_MODULE(execute){
 						case f3_LB: 
 							// load byte
 							p_breg->write(e_rd, p_mem->lb(p_breg->read(e_rs1), e_imm_S));
+						//	p_breg->write(e_rd, p_shell->lb(p_breg->read(e_rs1), e_imm_S));
+
 							break;
 						case f3_LH: 
 							// load half
 							p_breg->write(e_rd, p_mem->lh(p_breg->read(e_rs1), e_imm_S));
+						//	p_breg->write(e_rd, p_shell->lh(p_breg->read(e_rs1), e_imm_S));
 							break;
 						case f3_LW: 
 							// load word
 							p_breg->write(e_rd, p_mem->lw(p_breg->read(e_rs1), e_imm_S));
+					   //	p_breg->write(e_rd, p_shell->lw(p_breg->read(e_rs1), e_imm_S));
+
 							break;
 						case f3_LBU: 
 							// load byte unsigned
 							p_breg->write(e_rd, p_mem->lbu(p_breg->read(e_rs1), e_imm_S));
+						//	p_breg->write(e_rd, p_shell->lbu(p_breg->read(e_rs1), e_imm_S));
+
 							break;
 						case f3_LHU: 
 							// load half unsigned
 							p_breg->write(e_rd, p_mem->lhu(p_breg->read(e_rs1), e_imm_S));
+						//  p_breg->write(e_rd, p_shell->lhu(p_breg->read(e_rs1), e_imm_S));
+
 							break;
 							// default?
 					} // fim switch funct3 - loads
@@ -163,14 +178,20 @@ SC_MODULE(execute){
 						case f3_SB: 
 						// store byte
 						p_mem->sb((p_breg->read(e_rs1)), e_imm_S, p_breg->read(e_rs2));
+						//p_shell->sb((p_breg->read(e_rs1)), e_imm_S, p_breg->read(e_rs2));
+
 						break;
 						case f3_SH: 
 						// store half
 						p_mem->sh((p_breg->read(e_rs1)), e_imm_S, p_breg->read(e_rs2));
+						//p_shell->sh((p_breg->read(e_rs1)), e_imm_S, p_breg->read(e_rs2));
+
 						break;
 						case f3_SW: 
 						// store word
 						p_mem->sw((p_breg->read(e_rs1)), e_imm_S, p_breg->read(e_rs2));
+						//p_shell->sw((p_breg->read(e_rs1)), e_imm_S, p_breg->read(e_rs2));
+
 						break;	
 						// default?	
 					} // fim switch funct3 - STORE

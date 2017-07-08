@@ -2,7 +2,7 @@
  * shell_RISCV.h
  *
  *  Created on: 4 de jul de 2017
- *      Author: drcfts
+ *      Author: drcfts e litlle toin
  */
 
 #ifndef SRC_SHELL_RISCV_H_

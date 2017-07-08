@@ -2,7 +2,7 @@
  * decode.h
  *
  *  Created on: 4 de mai de 2017
- *      Author: drcfts
+ *      Author: drcfts e litlle toin
  */
 
 #ifndef DECODE_H_
