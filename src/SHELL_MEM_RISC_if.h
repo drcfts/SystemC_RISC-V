@@ -40,6 +40,14 @@ struct shell_mem_risc_if : public sc_interface {
 	virtual void
 	sb(const unsigned  address, int32_t constante, int32_t dado) = 0;
 
+	virtual int32_t
+	read(const uint32_t  adress) = 0;
+
+	virtual void
+	write_mem(const unsigned address, uint32_t data) = 0;
+
+	virtual void
+	dump_mem(int inicio, int fim, char formato) = 0;
 
 
 

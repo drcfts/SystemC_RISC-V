@@ -26,21 +26,30 @@ struct shell_mem_risc : public sc_module,public shell_mem_risc_if {
 
 	void sb(const unsigned address, int32_t constante, int32_t dado);
 
+	int32_t read(const uint32_t adress);
+
+	void write_mem(const unsigned address, uint32_t data);
+
+	void dump_mem(int inicio, int fim, char formato);
+
 
 
     SC_HAS_PROCESS( shell_mem_risc );
     shell_mem_risc (
         sc_module_name _name,
         unsigned int identify
+
                           ):
     sc_module(_name), identify(identify)
     {
-
+    	mem_ptr = new int32_t[MAX_MEM];
     }
   private:
     unsigned int identify;
-
+    int32_t *mem_ptr;
 
 };
 
 #endif
+
+
