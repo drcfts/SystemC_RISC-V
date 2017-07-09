@@ -22,7 +22,7 @@ void ShellRISCV::_threadRun()
     for (;;) {
         // Writing
         NoCDebug::printDebug("ShellRISC <- Master", NoCDebug::NI);
-        shellIn.read(send);
+        send = shellIn.read();
         std::vector<uint32_t> payload;
         //Payload eh um vetor, send tbm
         //Pega elemento a elemento do send e manda pro payload

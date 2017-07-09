@@ -12,7 +12,8 @@ CPP_SRCS += \
 ../src/memoria_instrucoes.cpp \
 ../src/networkinterfacefrontendbase.cpp \
 ../src/shell_Memoria.cpp \
-../src/shell_RISCV.cpp 
+../src/shell_RISCV.cpp \
+../src/specialkernel.cpp 
 
 OBJS += \
 ./src/SHELL_MEM_RISC.o \
@@ -23,7 +24,8 @@ OBJS += \
 ./src/memoria_instrucoes.o \
 ./src/networkinterfacefrontendbase.o \
 ./src/shell_Memoria.o \
-./src/shell_RISCV.o 
+./src/shell_RISCV.o \
+./src/specialkernel.o 
 
 CPP_DEPS += \
 ./src/SHELL_MEM_RISC.d \
@@ -34,14 +36,15 @@ CPP_DEPS += \
 ./src/memoria_instrucoes.d \
 ./src/networkinterfacefrontendbase.d \
 ./src/shell_Memoria.d \
-./src/shell_RISCV.d 
+./src/shell_RISCV.d \
+./src/specialkernel.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
 src/%.o: ../src/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -I/usr/local/systemc-2.3.1a/include -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	g++ -I/usr/local/systemc/include -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

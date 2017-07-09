@@ -1,7 +1,6 @@
-src/networkinterfacefrontendbase.o: \
- ../src/networkinterfacefrontendbase.cpp \
- ../src/networkinterfacefrontendbase.h \
- /usr/local/systemc/include/systemc.h /usr/local/systemc/include/systemc \
+src/SHELL_MEM_RISC.o: ../src/SHELL_MEM_RISC.cpp ../src/shared.h \
+ ../src/SHELL_MEM_RISC.h /usr/local/systemc/include/systemc.h \
+ /usr/local/systemc/include/systemc \
  /usr/local/systemc/include/sysc/kernel/sc_cmnhdr.h \
  /usr/local/systemc/include/sysc/kernel/../packages/boost/config.hpp \
  /usr/local/systemc/include/sysc/packages/boost/config/user.hpp \
@@ -115,9 +114,11 @@ src/networkinterfacefrontendbase.o: \
  /usr/local/systemc/include/sysc/utils/sc_vector.h \
  /usr/local/systemc/include/sysc/packages/boost/config.hpp \
  /usr/local/systemc/include/sysc/packages/boost/utility/enable_if.hpp \
- ../src/inetworkinterfacefrontend.h
+ ../src/SHELL_MEM_RISC_if.h
 
-../src/networkinterfacefrontendbase.h:
+../src/shared.h:
+
+../src/SHELL_MEM_RISC.h:
 
 /usr/local/systemc/include/systemc.h:
 
@@ -349,4 +350,4 @@ src/networkinterfacefrontendbase.o: \
 
 /usr/local/systemc/include/sysc/packages/boost/utility/enable_if.hpp:
 
-../src/inetworkinterfacefrontend.h:
+../src/SHELL_MEM_RISC_if.h:

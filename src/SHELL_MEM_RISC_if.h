@@ -10,7 +10,7 @@
 #ifndef SHELL_MEM_RISC_IF_H
 #define SHELL_MEM_RISC_IF_H
 
-#include "stdint.h"
+#include <stdint.h>
 #include "systemc.h"
 
 struct shell_mem_risc_if : public sc_interface {

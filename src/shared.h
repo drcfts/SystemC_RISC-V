@@ -8,6 +8,9 @@
 #ifndef SHARED_H_
 #define SHARED_H_
 
+#include <stdint.h>
+#include <vector>
+
 const short MAX_MEM=1024;
 
 #define MEM_WORD_SIZE 1024
@@ -138,7 +141,7 @@ enum opcodes_func_stores_loads {
 	_SH=0x29,	
 };
 
-std::vector<uint32_t> monta_send_load(uint32_t comando,uint32_t adress,uint32_t constante)
+inline std::vector<uint32_t> monta_send_load(uint32_t comando,uint32_t adress,uint32_t constante)
     		{
 	std::vector<uint32_t> ans;
 	// inserindo comando na primeira posicao do vector
@@ -152,7 +155,7 @@ std::vector<uint32_t> monta_send_load(uint32_t comando,uint32_t adress,uint32_t 
     		}
 
 
-std::vector<uint32_t> monta_send_store(uint32_t comando,uint32_t adress,uint32_t constante,uint32_t dado)
+inline std::vector<uint32_t> monta_send_store(uint32_t comando,uint32_t adress,uint32_t constante,uint32_t dado)
     		{
 	std::vector<uint32_t> ans;
 	// inserindo comando na primeira posicao do vector

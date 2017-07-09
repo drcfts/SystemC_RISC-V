@@ -19,11 +19,7 @@ using namespace std;
 //Por ser de instrucoes, n implementa saves e loads
 struct mem_inst : public sc_module, public mem_if {
 
-	// Conexao com a NoC
-	sc_fifo_out< std::vector<uint32_t> > shellIn;
-	sc_fifo_in< std::vector<uint32_t> > shellOut;
-
-	int32_t read(const unsigned adress);
+	int32_t read(const uint32_t adress);
 
 	int32_t lw(const unsigned address, int32_t constante);
 
@@ -41,7 +37,7 @@ struct mem_inst : public sc_module, public mem_if {
 
 	void sb(const unsigned address, int32_t constante, int32_t dado);
 
-	void write_mem(const unsigned address, int32_t data);
+	void write_mem(const unsigned address, uint32_t data);
 
 	void dump_mem(int inicio, int fim, char formato);
 

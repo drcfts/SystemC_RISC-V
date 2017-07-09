@@ -1,7 +1,6 @@
 #ifndef SHELL_MEM_RISC_H
 #define SHELL_MEM_RISC_H
 
-
 #include "systemc.h"
 #include "SHELL_MEM_RISC_if.h"
 

@@ -18,7 +18,7 @@ void mem::interpreta_Noc(){
 	//Uma thread para tomar as decisoes da memoria
 	//Recebe um vetor de payload da shell (comando,endereco)
 	for( ; ;){
-		memIn.read(rec);
+		rec = memIn.read();
 		cmd = rec.at(0);
 		switch(cmd){
 		//Se for operacoes Load, recebe address, constante

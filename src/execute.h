@@ -8,13 +8,11 @@
 
 #include <systemc.h>
 #include "breg_if.h"
-#include "mem_if.h"
 #include "shared.h"
-
-//#include "SHELL_MEM_RISC_if.h"
+#include "SHELL_MEM_RISC_if.h"
 
 SC_MODULE(execute){
-	sc_port <mem_if> p_mem;
+	sc_port <shell_mem_risc_if> p_mem;
 	sc_port <breg_if> p_breg;
 
 	// sc_port<shell_mem_risc_if> p_shell;

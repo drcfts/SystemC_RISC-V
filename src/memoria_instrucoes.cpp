@@ -7,7 +7,7 @@
 
 #include "memoria_instrucoes.h"
 
-int32_t mem_inst::read(const unsigned address){
+int32_t mem_inst::read(const uint32_t address){
 	if ((address) > MAX_MEM ){
 		cout << "Endereco fora do intervalo de tamanho da memoria!" << endl;
 		sc_stop();
@@ -47,7 +47,7 @@ void mem_inst::sb(const unsigned address, int32_t constante, int32_t dado){
 
 }
 
-void mem_inst::write_mem(const unsigned address, int32_t data){
+void mem_inst::write_mem(const unsigned address, uint32_t data){
 	mem_ptr[address] = data;
 
 }
