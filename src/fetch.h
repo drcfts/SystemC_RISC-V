@@ -10,7 +10,7 @@
 
 #include <systemc.h>
 #include "shared.h"
-#include "mem_if.h"
+#include "SHELL_MEM_RISC_if.h".h"
 #include "breg_if.h"
 
 #define RASTREIA_PC
@@ -19,7 +19,7 @@
 //e escrita para ser acessado (por ponteiro) pelos metodos fetch
 //e execute
 SC_MODULE(fetch){
-	sc_port <mem_if> p_mem;
+	sc_port <shell_mem_risc_if> p_mem;
 	sc_port <breg_if> p_breg;
 	// sc_port<shell_mem_risc_if> p_shell;
 

@@ -44,7 +44,7 @@ all: SystemC_RISC-V
 SystemC_RISC-V: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L/usr/local/systemc-2.3.1a/lib-linux64 -o "SystemC_RISC-V" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L/usr/local/systemc/lib-linux64 -o "SystemC_RISC-V" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
