@@ -35,13 +35,13 @@ int sc_main(int argc, char* argv[]){
 	sc_fifo < contexto* > f_d( 1);
 	sc_fifo < contexto* > d_e( 1);
 
-	Fetch.p_mem(MemoriaInstrucoes);
+	Fetch.p_mem(Mem_RISC_e_INST);
 	Fetch.p_breg(Breg);
 	Fetch.execute_fetch(e_f);
 	Fetch.fetch_decode(f_d);
 
 	Execute.p_breg(Breg);
-	Execute.p_mem(Mem_RISC);
+	Execute.p_mem(Mem_RISC_e_INST);
 	Execute.decode_execute(d_e);
 	Execute.execute_fetch(e_f);
 
