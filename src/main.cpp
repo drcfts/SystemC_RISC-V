@@ -168,15 +168,15 @@ uint32_t gerainst(int n, ...){
 		inst = (va_arg(ap, int) & 0xFFFFF) << 5;
 		inst = ((va_arg(ap, int) & 0x1F) | inst) << 6;
 		inst = inst | n;
-		std::cout <<std::dec<< "inst ->" << inst <<std::endl;
-		std::cout <<std::hex<< "n ->" << n <<std::endl;
+//		std::cout <<std::dec<< "inst ->" << inst <<std::endl;
+//		std::cout <<std::hex<< "n ->" << n <<std::endl;
 		break;
 	case TIPO_AUIPC :
 		inst = (va_arg(ap, int) & 0xFFFFF) << 5;
 		inst = ((va_arg(ap, int) & 0x1F) | inst) << 6;
 		inst = inst | n;
-		std::cout <<std::hex<< "inst ->" << inst <<std::endl;
-		std::cout <<std::hex<< "n ->" << n <<std::endl;
+//		std::cout <<std::hex<< "inst ->" << inst <<std::endl;
+//		std::cout <<std::hex<< "n ->" << n <<std::endl;
 		break;
 		//Tipo I possui a mesma decodificacao
 	case TIPO_I_REST0   :
@@ -188,8 +188,8 @@ uint32_t gerainst(int n, ...){
 		inst = ((va_arg(ap, int) & 0x1F) | inst) << 7;
 		inst |= n;
 
-		std::cout <<std::dec<< "inst ->" << inst <<std::endl;
-		std::cout <<std::hex<< "n ->" << n <<std::endl;
+//		std::cout <<std::dec<< "inst ->" << inst <<std::endl;
+//		std::cout <<std::hex<< "n ->" << n <<std::endl;
 		break;
 	case TIPO_I2_SHAMT :
 		// colocando f7
@@ -206,8 +206,8 @@ uint32_t gerainst(int n, ...){
 		inst = inst | n;
 
 
-		std::cout <<std::dec<< "inst ->" << inst <<std::endl;
-		std::cout <<std::hex<< "n ->" << n <<std::endl;
+//		std::cout <<std::dec<< "inst ->" << inst <<std::endl;
+//		std::cout <<std::hex<< "n ->" << n <<std::endl;
 		break;
 		// TIPO S => imm(11-5), rs2, rs1, funct3, imm(4-0)
 	case TIPO_S :
@@ -218,8 +218,8 @@ uint32_t gerainst(int n, ...){
 		inst = ((va_arg(ap, int) & 0x07) | inst) << 5;
 		inst = ((imediato_S & 0x1F) | inst) << 7;
 		inst |= n;
-		std::cout <<std::dec<< "inst ->" << inst <<std::endl;
-		std::cout <<std::hex<< "n ->" << n <<std::endl;
+//		std::cout <<std::dec<< "inst ->" << inst <<std::endl;
+//		std::cout <<std::hex<< "n ->" << n <<std::endl;
 		break;
 	case TIPO_B :
 		imediato_B = (va_arg(ap, int));
@@ -251,15 +251,15 @@ uint32_t gerainst(int n, ...){
 		inst = ((va_arg(ap, int) & 0x1F) | inst) << 7;
 		inst |= n;
 
-		std::cout <<std::dec<< "inst ->" << inst <<std::endl;
-		std::cout <<std::hex<< "n ->" << n <<std::endl;
+//		std::cout <<std::dec<< "inst ->" << inst <<std::endl;
+//		std::cout <<std::hex<< "n ->" << n <<std::endl;
 	break;
 	case TIPO_R:
 		// MODIFICA O F3 e F7
 		// colocando f7
 		inst = (va_arg(ap, int) & 0x7F) << 5;
-		std::cout << "inst"<< hex_para_decimal(inst) <<std::endl;
-		std::cout << std::hex << "Inst ->"<< inst <<std::endl;
+//		std::cout << "inst"<< hex_para_decimal(inst) <<std::endl;
+//		std::cout << std::hex << "Inst ->"<< inst <<std::endl;
 		// colocando rs2
 		inst = ((va_arg(ap, int) & 0x1F) | inst) << 5;
 
@@ -271,8 +271,8 @@ uint32_t gerainst(int n, ...){
 		inst = ((va_arg(ap, int) & 0x1F) | inst) << 7;
 		// por fim opcode
 		inst = inst | n;
-		std::cout << "inst"<< hex_para_decimal(inst) <<std::endl;
-		std::cout << std::hex << "Inst ->"<< inst <<std::endl;
+//		std::cout << "inst"<< hex_para_decimal(inst) <<std::endl;
+//		std::cout << std::hex << "Inst ->"<< inst <<std::endl;
 		break;
 	default:
 		break;
@@ -288,7 +288,7 @@ std::string hex_para_decimal(uint32_t hex12){
 	x= ss.str();
 
 
-	for(int i=0;i<x.length();++i){
+	for(unsigned int i=0;i<x.length();++i){
 		switch(x[i]){
 		case '0':sRet.append("0000");break;
 		case '1':sRet.append("0001");break;

@@ -10,7 +10,6 @@
 
 #include <systemc.h>
 #include "shared.h"
-#include "SHELL_MEM_RISC_if.h".h"
 #include "breg_if.h"
 #include "SHELL_MEM_RISC_if.h"
 #define RASTREIA_PC
