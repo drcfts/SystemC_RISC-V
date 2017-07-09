@@ -17,17 +17,37 @@ ShellRISCV::ShellRISCV(sc_module_name name) :
 
 void ShellRISCV::_threadRun()
 {
-	std::vector<uint32_t>   send, rec;
+	int flag_save = 0;
+	uint32_t   send, rec;
     uint32_t overhead;
     for (;;) {
+    	//Zera flag a cada iteracao
+    	flag_save = 0;
         // Writing
         NoCDebug::printDebug("ShellRISC <- Master", NoCDebug::NI);
         send = shellIn.read();
         std::vector<uint32_t> payload;
-        //Payload eh um vetor, send tbm
-        //Pega elemento a elemento do send e manda pro payload
-        for (unsigned i=0; i<send.size(); i++){
-            payload.push_back(send.at(i));
+        //comando,endereco
+        //Payload eh um vetor
+        //Se for save, tem-se endereco e dado
+        if(send == _SB || send == _SW || send == _SH){
+        	flag_save = 1;
+        	//Coloca cmd
+        	payload.push_back(send);
+            send = shellIn.read();
+            //Coloca endereco
+        	payload.push_back(send);
+            send = shellIn.read();
+            //Coloca dado
+        	payload.push_back(send);
+        }
+        //Se for load
+        else{
+        	//Coloca cmd
+        	payload.push_back(send);
+        	send = shellIn.read();
+        	//Coloca endereco
+        	payload.push_back(send);
         }
         // DESTINO -> MEMÓRIA, qual o valor ?????????//////
         int payloadDst = 1;
@@ -40,17 +60,15 @@ void ShellRISCV::_threadRun()
         NoCDebug::printDebug("ShellRISC <- Channel", NoCDebug::NI);
         receivePayload(payload, &payloadSrc);
         overhead = payload.at(0);
-
-        rec.push_back(overhead);
+        shellOut.write(overhead);
         //Se deu certo
         if(overhead){
-
-        	NoCDebug::printDebug("ShellRISC -> Master", NoCDebug::NI);
-        	//Como os dois sao vetores, copia-se elemento a elemento
-        	for (unsigned i=0; i<payload.size(); i++){
-        		rec.push_back(payload.at(i));
+        	//Se for load, le ainda o dado
+        	if(!flag_save){
+        		NoCDebug::printDebug("ShellRISC -> Master", NoCDebug::NI);
+        		rec = payload.at(1);
+        		shellOut.write(rec);
         	}
-        	shellOut.write(rec);
         }
         //Apos fim das operacoes, limpa payload
         payload.clear();

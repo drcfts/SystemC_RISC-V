@@ -9,26 +9,48 @@ MemoriaShell::MemoriaShell(sc_module_name name) :
 
 void MemoriaShell::_threadRun()
 {
-	std::vector<uint32_t> rec;
-	std::vector<uint32_t> send;
+	uint32_t rec;
+	uint32_t send;
+	int flag_save = 0;
+
     for (;;) {
+    	flag_save = 0;
         // Reading
         std::vector<uint32_t> payload;
         int payloadSrc;
         NoCDebug::printDebug("Shell Memoria <- Channel", NoCDebug::NI);
         receivePayload(payload, &payloadSrc);
-        for (unsigned i=0; i<payload.size(); i++){
-        	rec.push_back(payload.at(i));
-        }
         NoCDebug::printDebug("Shell Memoria -> Memoria", NoCDebug::NI);
+        rec = payload.at(0);
         shellOut.write(rec);
+        //Se for save, tem-se endereco e dado
+        if(rec == _SB || rec == _SW || rec == _SH){
+        	flag_save = 1;
+        	//Le addr
+        	rec = shellIn.read();
+        	//Coloca addr
+        	shellOut.write(rec);
+        	//Le dado
+        	send = shellIn.read();
+        	//Coloca dado
+        	shellOut.write(rec);
+        }
+        else{
+        	//Le addr
+        	rec = shellIn.read();
+        	//Coloca addr
+        	shellOut.write(rec);
+        }
 
         // Writing
         NoCDebug::printDebug("Shell Memoria <- Memoria", NoCDebug::NI);
         send = shellIn.read();
         payload.clear();
-        for (unsigned i=0; i<send.size(); i++){
-        	payload.push_back(send.at(i));
+        payload.push_back(send);
+        //Se for load, tem dado
+        if(!flag_save){
+        	send = shellIn.read();
+        	payload.push_back(send);
         }
         int payloadDst = 0;
         NoCDebug::printDebug("Shell Memoria -> Channel", NoCDebug::NI);

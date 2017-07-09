@@ -3,6 +3,7 @@
 
 #include <systemc.h>
 #include "networkinterfacefrontendbase.h"
+#include "shared.h"
 
 class MemoriaShell : public sc_module, public NetworkInterfaceFrontEndBase
 {
@@ -12,8 +13,8 @@ class MemoriaShell : public sc_module, public NetworkInterfaceFrontEndBase
 
 public:
     // IO
-    sc_fifo_in< std::vector<uint32_t> > shellIn;
-    sc_fifo_out< std::vector<uint32_t> > shellOut;
+    sc_fifo_in< uint32_t > shellIn;
+    sc_fifo_out< uint32_t > shellOut;
 
     MemoriaShell(sc_module_name name);
 };

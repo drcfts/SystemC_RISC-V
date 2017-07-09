@@ -1,4 +1,4 @@
-src/shell_RISCV.o: ../src/shell_RISCV.cpp ../src/shell_RISCV.h \
+src/specialkernel.o: ../src/specialkernel.cpp ../src/specialkernel.h \
  /usr/local/systemc/include/systemc.h /usr/local/systemc/include/systemc \
  /usr/local/systemc/include/sysc/kernel/sc_cmnhdr.h \
  /usr/local/systemc/include/sysc/kernel/../packages/boost/config.hpp \
@@ -113,10 +113,9 @@ src/shell_RISCV.o: ../src/shell_RISCV.cpp ../src/shell_RISCV.h \
  /usr/local/systemc/include/sysc/utils/sc_vector.h \
  /usr/local/systemc/include/sysc/packages/boost/config.hpp \
  /usr/local/systemc/include/sysc/packages/boost/utility/enable_if.hpp \
- ../src/networkinterfacefrontendbase.h ../src/inetworkinterfacefrontend.h \
- ../src/shared.h ../src/nocdebug.h
+ ../src/inetworkinterfacefrontend.h
 
-../src/shell_RISCV.h:
+../src/specialkernel.h:
 
 /usr/local/systemc/include/systemc.h:
 
@@ -348,10 +347,4 @@ src/shell_RISCV.o: ../src/shell_RISCV.cpp ../src/shell_RISCV.h \
 
 /usr/local/systemc/include/sysc/packages/boost/utility/enable_if.hpp:
 
-../src/networkinterfacefrontendbase.h:
-
 ../src/inetworkinterfacefrontend.h:
-
-../src/shared.h:
-
-../src/nocdebug.h:

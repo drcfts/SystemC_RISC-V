@@ -6,8 +6,8 @@
 
 struct shell_mem_risc : public sc_module,public shell_mem_risc_if {
 
-    sc_fifo_in< std::vector<uint32_t> > shellMEM_RISC_In;
-    sc_fifo_out< std::vector<uint32_t> > shellMEM_RISC_Out;
+    sc_fifo_in< uint32_t > shellMEM_RISC_In;
+    sc_fifo_out< uint32_t > shellMEM_RISC_Out;
 
 
 	int32_t lw(const unsigned address, int32_t constante);

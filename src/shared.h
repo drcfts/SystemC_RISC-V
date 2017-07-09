@@ -146,10 +146,8 @@ inline std::vector<uint32_t> monta_send_load(uint32_t comando,uint32_t adress,ui
 	std::vector<uint32_t> ans;
 	// inserindo comando na primeira posicao do vector
 	ans.at(0)=comando;
-	// inserindo adress na segunda posicao do vector
-	ans.at(1)= adress;
-	// inserindo constante na terceira posicao do vector
-	ans.at(2)= constante;
+	// inserindo adress + cte na segunda posicao do vector
+	ans.at(1)= adress + constante;
 
 	return ans;
     		}
@@ -160,12 +158,10 @@ inline std::vector<uint32_t> monta_send_store(uint32_t comando,uint32_t adress,u
 	std::vector<uint32_t> ans;
 	// inserindo comando na primeira posicao do vector
 	ans.at(0)=comando;
-	// inserindo adress na segunda posicao do vector
-	ans.at(1)= adress;
-	// inserindo constante na terceira posicao do vector
-	ans.at(2)= constante;
+	// inserindo adress + cte na segunda posicao do vector
+	ans.at(1)= adress + constante;
 	// por fim insere o dado
-	ans.at(3)= dado;
+	ans.at(2)= dado;
 
 	return ans;
     		}

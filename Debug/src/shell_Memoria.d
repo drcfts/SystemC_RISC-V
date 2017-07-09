@@ -114,7 +114,8 @@ src/shell_Memoria.o: ../src/shell_Memoria.cpp ../src/nocdebug.h \
  /usr/local/systemc/include/sysc/utils/sc_vector.h \
  /usr/local/systemc/include/sysc/packages/boost/config.hpp \
  /usr/local/systemc/include/sysc/packages/boost/utility/enable_if.hpp \
- ../src/networkinterfacefrontendbase.h ../src/inetworkinterfacefrontend.h
+ ../src/networkinterfacefrontendbase.h ../src/inetworkinterfacefrontend.h \
+ ../src/shared.h
 
 ../src/nocdebug.h:
 
@@ -353,3 +354,5 @@ src/shell_Memoria.o: ../src/shell_Memoria.cpp ../src/nocdebug.h \
 ../src/networkinterfacefrontendbase.h:
 
 ../src/inetworkinterfacefrontend.h:
+
+../src/shared.h:

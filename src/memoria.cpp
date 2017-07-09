@@ -8,9 +8,7 @@
 #include "memoria.h"
 
 void mem::interpreta_Noc(){
-	std::vector<uint32_t>   send, rec;
 	uint32_t address, dado;
-	int32_t constante;
 	int32_t dado_retorno, flag_salvou = 0;
 	uint32_t cmd;
 	int erro = 0;
@@ -18,63 +16,46 @@ void mem::interpreta_Noc(){
 	//Uma thread para tomar as decisoes da memoria
 	//Recebe um vetor de payload da shell (comando,endereco)
 	for( ; ;){
-		rec = memIn.read();
-		cmd = rec.at(0);
+		cmd = memIn.read();
 		switch(cmd){
-		//Se for operacoes Load, recebe address, constante
+		//Se for operacoes Load, recebe address (address + cte)
 		case _LW:
-			address = rec.at(1);
-			//Faz o typecast pq pode ser negativo
-			constante = (int32_t)rec.at(2);
-			dado_retorno = lw(address, constante);
+			address = memIn.read();
+			dado_retorno = lw(address, 0);
 			break;
 		case _LB:
-			address = rec.at(1);
-			//Faz o typecast pq pode ser negativo
-			constante = (int32_t)rec.at(2);
-			dado_retorno = lb(address, constante);
+			address = memIn.read();
+			dado_retorno = lb(address, 0);
 			break;
 		case _LH:
-			address = rec.at(1);
-			//Faz o typecast pq pode ser negativo
-			constante = (int32_t)rec.at(2);
-			dado_retorno = lh(address, constante);
+			address = memIn.read();
+			dado_retorno = lh(address, 0);
 			break;
 		case _LBU:
-			address = rec.at(1);
-			//Faz o typecast pq pode ser negativo
-			constante = (int32_t)rec.at(2);
-			dado_retorno = lbu(address, constante);
+			address = memIn.read();
+			dado_retorno = lbu(address, 0);
 			break;
 		case _LHU:
-			address = rec.at(1);
-			//Faz o typecast pq pode ser negativo
-			constante = (int32_t)rec.at(2);
-			dado_retorno = lhu(address, constante);
+			address = memIn.read();
+			dado_retorno = lhu(address, 0);
 			break;
 	    //Saves recebem, alem disso, os dados
 		case _SW:
-			address = rec.at(1);
-			//Faz o typecast pq pode ser negativo
-			constante = (int32_t)rec.at(2);
-			dado = rec.at(3);
-			sw(address, constante, dado);
+			address = memIn.read();
+			dado = memIn.read();;
+			sw(address, 0, dado);
 			flag_salvou = 1;
 			break;
 		case _SB:
-			address = rec.at(1);
-			//Faz o typecast pq pode ser negativo
-			constante = (int32_t)rec.at(2);
-			dado = rec.at(3);
-			sb(address, constante,dado);
+			address = memIn.read();
+			dado = memIn.read();
+			sb(address, 0,dado);
 			flag_salvou = 1;
 			break;
 		case _SH:
-			address = rec.at(1);
-			//Faz o typecast pq pode ser negativo
-			constante = (int32_t)rec.at(2);
-			dado = rec.at(3);
-			sh(address, constante,dado);
+			address = memIn.read();
+			dado = memIn.read();
+			sh(address, 0,dado);
 			flag_salvou = 1;
 			break;
 		default:
@@ -83,20 +64,18 @@ void mem::interpreta_Noc(){
 		} //switch
 		if(erro){
 			//Vetor manda que houve erro apenas (para a Shell)
-			send.at(0) = 0;
+			memOut.write(0);
 			erro = 0;
 		}
 		else{
 			//Caso n haja erro
-			send.at(0) = 1;
+			memOut.write(1);
 			//Se for load, deve mandar dado tambem
 			if(!flag_salvou){
-				send.at(1) = dado_retorno;
+				memOut.write(dado_retorno);
 				flag_salvou = 0;
 			}
 		}
-		memOut.write(send);
-		send.clear();
 	} //for
 
 }

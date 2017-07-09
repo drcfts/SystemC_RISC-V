@@ -50,24 +50,24 @@ int sc_main(int argc, char* argv[]){
 	Decode.fetch_decode(f_d);
 
 	//Conexoes com o exemplo de NoC
-	sc_fifo<std::vector<uint32_t>> *masterShellFifo = new sc_fifo<std::vector<uint32_t>>(1);
-	sc_fifo<std::vector<uint32_t>> *shellMasterFifo = new sc_fifo<std::vector<uint32_t>>(1);
+	sc_fifo<uint32_t> *masterShellFifo = new sc_fifo<uint32_t>(1);
+	sc_fifo<uint32_t> *shellMasterFifo = new sc_fifo<uint32_t>(1);
 	Mem_RISC.shellMEM_RISC_Out(*masterShellFifo);
 	Shell_RISC.shellIn(*masterShellFifo);
 	Shell_RISC.shellOut(*shellMasterFifo);
 	Mem_RISC.shellMEM_RISC_In(*shellMasterFifo);
 
 
-	sc_fifo<std::vector<uint32_t>> slaveShellFifo(1);
-	sc_fifo<std::vector<uint32_t>> shellSlaveFifo(1);
+	sc_fifo<uint32_t> slaveShellFifo(1);
+	sc_fifo<uint32_t> shellSlaveFifo(1);
 	Memoria_NOC.memOut(shellSlaveFifo);
 	Shell_Memoria.shellIn(shellSlaveFifo);
 	Shell_Memoria.shellOut(slaveShellFifo);
 	Memoria_NOC.memIn(slaveShellFifo);
 
 	SpecialKernel multKernel("specialKernel");
-	multKernel.connectMaster(&masterShell);
-	multKernel.connectSlave(&slaveShell);
+	multKernel.connectMaster(&Shell_RISC);
+	multKernel.connectSlave(&Shell_Memoria);
 
 
 	contexto *dado_entrada = new contexto();

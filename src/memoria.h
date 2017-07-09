@@ -17,8 +17,8 @@ using namespace std;
 struct mem : public sc_module{
 
 	// Conexao com a NoC
-	sc_fifo_out< std::vector<uint32_t> > memOut;
-	sc_fifo_in< std::vector<uint32_t> > memIn;
+	sc_fifo_out< uint32_t > memOut;
+	sc_fifo_in< uint32_t > memIn;
 
 	int32_t read(const unsigned adress);
 
