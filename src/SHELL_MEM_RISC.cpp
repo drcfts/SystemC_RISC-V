@@ -156,6 +156,7 @@ void shell_mem_risc :: sb(const unsigned address, int32_t constante, int32_t dad
 		cout << "OK! " << endl;
 	}
 }
+
 int32_t shell_mem_risc::read(const uint32_t address){
 	if ((address) > MAX_MEM ){
 		cout << "Endereco fora do intervalo de tamanho da memoria!" << endl;

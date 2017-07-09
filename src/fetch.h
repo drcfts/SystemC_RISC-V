@@ -12,16 +12,16 @@
 #include "shared.h"
 #include "SHELL_MEM_RISC_if.h".h"
 #include "breg_if.h"
-
+#include "SHELL_MEM_RISC_if.h"
 #define RASTREIA_PC
 
 //Criar uma classe memoria que implementa interface com metodos de leitura
 //e escrita para ser acessado (por ponteiro) pelos metodos fetch
 //e execute
 SC_MODULE(fetch){
-	sc_port <shell_mem_risc_if> p_mem;
+
 	sc_port <breg_if> p_breg;
-	// sc_port<shell_mem_risc_if> p_shell;
+	sc_port<shell_mem_risc_if> p_mem;
 
 	sc_fifo_in < contexto*> execute_fetch;
 	sc_fifo_out < contexto* > fetch_decode;
