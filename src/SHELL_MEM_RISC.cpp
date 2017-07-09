@@ -156,7 +156,8 @@ void shell_mem_risc :: sb(const unsigned address, int32_t constante, int32_t dad
 		cout << "OK! " << endl;
 	}
 }
-int32_t mem_inst::read(const uint32_t address){
+
+int32_t shell_mem_risc::read(const uint32_t address){
 	if ((address) > MAX_MEM ){
 		cout << "Endereco fora do intervalo de tamanho da memoria!" << endl;
 		sc_stop();
@@ -164,12 +165,12 @@ int32_t mem_inst::read(const uint32_t address){
 	return mem_ptr[address];
 }
 
-void mem_inst::write_mem(const unsigned address, uint32_t data){
+void shell_mem_risc::write_mem(const unsigned address, uint32_t data){
 	mem_ptr[address] = data;
 
 }
 
-void mem_inst::dump_mem(int inicio, int fim, char formato){
+void shell_mem_risc::dump_mem(int inicio, int fim, char formato){
 	switch (formato) {
 		case 'h':
 		case 'H':

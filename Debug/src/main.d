@@ -113,9 +113,9 @@ src/main.d: ../src/main.cpp ../src/fetch.h \
  /usr/local/systemc-2.3.1a/include/sysc/utils/sc_pvector.h \
  /usr/local/systemc-2.3.1a/include/sysc/utils/sc_vector.h \
  /usr/local/systemc-2.3.1a/include/sysc/packages/boost/utility/enable_if.hpp \
- ../src/shared.h ../src/mem_if.h ../src/breg_if.h ../src/decode.h \
- ../src/execute.h ../src/SHELL_MEM_RISC_if.h ../src/breg.h \
- ../src/memoria_instrucoes.h ../src/shell_RISCV.h \
+ ../src/shared.h ../src/mem_if.h ../src/breg_if.h \
+ ../src/SHELL_MEM_RISC_if.h ../src/decode.h ../src/execute.h \
+ ../src/breg.h ../src/memoria_instrucoes.h ../src/shell_RISCV.h \
  ../src/networkinterfacefrontendbase.h ../src/inetworkinterfacefrontend.h \
  ../src/SHELL_MEM_RISC.h ../src/shell_Memoria.h ../src/memoria.h \
  ../src/specialkernel.h
@@ -356,11 +356,11 @@ src/main.d: ../src/main.cpp ../src/fetch.h \
 
 ../src/breg_if.h:
 
+../src/SHELL_MEM_RISC_if.h:
+
 ../src/decode.h:
 
 ../src/execute.h:
-
-../src/SHELL_MEM_RISC_if.h:
 
 ../src/breg.h:
 
