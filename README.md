@@ -23,7 +23,7 @@ Alunos:
 
 ###  Implementar uma conexão ao roteador (com criação de um módulo Shell)
 
-- [ ] Shell/ Kernel
+- [X] Shell/ Kernel
 
 ###  Documento de Projeto
 
