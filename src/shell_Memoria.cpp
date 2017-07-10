@@ -18,6 +18,7 @@ void MemoriaShell::_threadRun()
         // Reading
         std::vector<uint32_t> payload;
         int payloadSrc;
+	// payload = ShellIn.read();    
         NoCDebug::printDebug("Shell Memoria <- Channel", NoCDebug::NI);
         receivePayload(payload, &payloadSrc);
         NoCDebug::printDebug("Shell Memoria -> Memoria", NoCDebug::NI);
