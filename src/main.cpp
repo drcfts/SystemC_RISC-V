@@ -92,14 +92,14 @@ int sc_main(int argc, char* argv[]){
 	Mem_RISC_e_INST.write_mem(3,gerainst(TIPO_I2_SHAMT,31, 3, f3_ORI, 9));
     /*ANDI $9, $9, 15*/
 	Mem_RISC_e_INST.write_mem(4,gerainst(TIPO_I2_SHAMT,15, 9, f3_ANDI, 9));
-    /*BEQ $2,$9,913*/
-	Mem_RISC_e_INST.write_mem(5,gerainst(TIPO_B,913,19,2,f3_BEQ));
-    /*BNE $2,$9,913*/
-	Mem_RISC_e_INST.write_mem(6,gerainst(TIPO_B,913,19,2,f3_BNE));
-    /*LUI $26,931*/
-	Mem_RISC_e_INST.write_mem(7,gerainst(TIPO_LUI,931,26));
-    /* AUIPC $6,111*/
-	Mem_RISC_e_INST.write_mem(8,gerainst(TIPO_AUIPC,111,6));
+    /*BEQ $2,$9,13*/
+	Mem_RISC_e_INST.write_mem(5,gerainst(TIPO_B,13,9,2,f3_BEQ));
+    /*BNE $2,$9,13*/
+	Mem_RISC_e_INST.write_mem(6,gerainst(TIPO_B,13,9,2,f3_BNE));
+    /*LUI $26,31*/
+	Mem_RISC_e_INST.write_mem(7,gerainst(TIPO_LUI,31,26));
+    /* AUIPC $6,1*/
+	Mem_RISC_e_INST.write_mem(8,gerainst(TIPO_AUIPC,1,6));
     /*ADD $7,$2,$3;*/
 	Mem_RISC_e_INST.write_mem(9,gerainst(TIPO_R,f7_RESTO,3,2,f3_ADD_SUB,7));
     /*SUB $11,$7,$3*/
@@ -116,8 +116,8 @@ int sc_main(int argc, char* argv[]){
 	Mem_RISC_e_INST.write_mem(15,gerainst(TIPO_R,f7_RESTO,9,1,f3_AND,22));
     /*OR $6,$21,$28;*/
 	Mem_RISC_e_INST.write_mem(16,gerainst(TIPO_R,f7_RESTO,28,21,f3_OR,6));
-    /* JALR $23, $2, 10*/
-	Mem_RISC_e_INST.write_mem(17,gerainst(TIPO_JALR,10, 2,0,23));
+    /* JALR $23, $2, 1*/
+	Mem_RISC_e_INST.write_mem(17,gerainst(TIPO_JALR,1, 2,0,23));
     /*SRAI $13, $2, 10*/
 	Mem_RISC_e_INST.write_mem(18,gerainst(TIPO_I2_SHAMT,f7_SRAI,10, 2, f3_SRLI_SRAI, 13));
     /*SRLI $13, $2, 10*/
