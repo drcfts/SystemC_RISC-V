@@ -75,9 +75,9 @@ void mem::interpreta_Noc(){
 			//Se for load, deve mandar dado tambem
 			if(!flag_salvou){
 				memOut.write(dado_retorno);
-				flag_salvou = 0;
 			}
 		}
+		flag_salvou = 0;
 	} //for
 
 }
