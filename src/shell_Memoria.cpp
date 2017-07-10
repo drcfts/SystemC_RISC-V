@@ -51,7 +51,6 @@ void MemoriaShell::_threadRun()
         //Se for load, tem dado
         if(!flag_save){
         	send = shellIn.read();
-            cout << "Debug " << send << endl;
         	payload.push_back(send);
         }
         int payloadDst = 0;

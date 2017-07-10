@@ -22,7 +22,6 @@ int sc_main(int argc, char* argv[]){
 	decode Decode("Decode");
 	execute Execute("Execute");
 
-//	mem_inst MemoriaInstrucoes("Mem_Instrucoes");
 	mem Memoria_NOC("Mem_NoC");
 	shell_mem_risc Mem_RISC_e_INST("Mem_Risc",0);
 	ShellRISCV Shell_RISC("Shell_Risc");
@@ -104,38 +103,38 @@ int sc_main(int argc, char* argv[]){
 	Mem_RISC_e_INST.write_mem(7,gerainst(TIPO_I_REST0,0, 0, f3_LW, 5));
 //    /* AUIPC $6,1*/
 //	Mem_RISC_e_INST.write_mem(8,gerainst(TIPO_AUIPC,1,6));
-//    /*ADD $7,$2,$3;*/
-//	Mem_RISC_e_INST.write_mem(9,gerainst(TIPO_R,f7_RESTO,3,2,f3_ADD_SUB,7));
+//    /*ADD $7,$5,$9;*/
+	Mem_RISC_e_INST.write_mem(8,gerainst(TIPO_R,f7_RESTO,5,9,f3_ADD_SUB,7));
 //    /*SUB $11,$7,$3*/
-//	Mem_RISC_e_INST.write_mem(10,gerainst(TIPO_R,f7_SRA_SUB,3,7,f3_ADD_SUB,11));
+	Mem_RISC_e_INST.write_mem(9,gerainst(TIPO_R,f7_SRA_SUB,3,7,f3_ADD_SUB,11));
 //   /*SRA $5,$9,$2*/
-//	Mem_RISC_e_INST.write_mem(11,gerainst(TIPO_R,f7_SRA_SUB,2,9,f3_SRL_SRA,5));
+	Mem_RISC_e_INST.write_mem(10,gerainst(TIPO_R,f7_SRA_SUB,2,9,f3_SRL_SRA,5));
 //   /* SRL $17,$9,$2*/
-//	Mem_RISC_e_INST.write_mem(12,gerainst(TIPO_R,f7_RESTO,2,9,f3_SRL_SRA,17));
-//   /*  SLL $5,$4,$3*/
-//	Mem_RISC_e_INST.write_mem(13, gerainst(TIPO_R,f7_RESTO,3,4,f3_SLL,5));
+	Mem_RISC_e_INST.write_mem(11,gerainst(TIPO_R,f7_RESTO,2,9,f3_SRL_SRA,17));
+//   /*  SLL $5,$9,$3*/
+	Mem_RISC_e_INST.write_mem(12, gerainst(TIPO_R,f7_RESTO,3,9,f3_SLL,5));
 //    /*XOR $1,$2,$2*/
-//	Mem_RISC_e_INST.write_mem(14,gerainst(TIPO_R,f7_RESTO,2,2,f3_XOR,1));
+	Mem_RISC_e_INST.write_mem(13,gerainst(TIPO_R,f7_RESTO,2,2,f3_XOR,1));
 //    /*AND $22,$1,$9;*/
-//	Mem_RISC_e_INST.write_mem(15,gerainst(TIPO_R,f7_RESTO,9,1,f3_AND,22));
+	Mem_RISC_e_INST.write_mem(14,gerainst(TIPO_R,f7_RESTO,9,1,f3_AND,22));
 //    /*OR $6,$21,$28;*/
-//	Mem_RISC_e_INST.write_mem(16,gerainst(TIPO_R,f7_RESTO,28,21,f3_OR,6));
+	Mem_RISC_e_INST.write_mem(15,gerainst(TIPO_R,f7_RESTO,28,21,f3_OR,6));
 //    /* JALR $23, $2, 1*/
 //	//Mem_RISC_e_INST.write_mem(17,gerainst(TIPO_JALR,1, 2,0,23));
 //    /*SRAI $13, $2, 10*/
-//	Mem_RISC_e_INST.write_mem(17,gerainst(TIPO_I2_SHAMT,f7_SRAI,10, 2, f3_SRLI_SRAI, 13));
+	Mem_RISC_e_INST.write_mem(16,gerainst(TIPO_I2_SHAMT,f7_SRAI,10, 2, f3_SRLI_SRAI, 13));
 //    /*SRLI $13, $2, 10*/
-//	Mem_RISC_e_INST.write_mem(18,gerainst(TIPO_I2_SHAMT,f7_RESTO,10, 2, f3_SRLI_SRAI, 13));
+	Mem_RISC_e_INST.write_mem(17,gerainst(TIPO_I2_SHAMT,f7_RESTO,10, 2, f3_SRLI_SRAI, 13));
 //    /*SLLI $13, $2, 10*/
-//	Mem_RISC_e_INST.write_mem(19,gerainst(TIPO_I2_SHAMT,f7_RESTO,10, 2, f3_SLLI, 13));
+	Mem_RISC_e_INST.write_mem(18,gerainst(TIPO_I2_SHAMT,f7_RESTO,10, 2, f3_SLLI, 13));
 //    /* JAL $5,255;*/
 //	//Mem_RISC_e_INST.write_mem(21,gerainst(TIPO_JAL,255,5));
 //    /* SLTIU $3, $2, -2*/
-//	Mem_RISC_e_INST.write_mem(20,gerainst(TIPO_I2_SHAMT,-2, 2, f3_SLTIU, 3));
+	Mem_RISC_e_INST.write_mem(19,gerainst(TIPO_I2_SHAMT,-2, 2, f3_SLTIU, 3));
 //    /* SLT $12, $3, $2*/
-//	Mem_RISC_e_INST.write_mem(21,gerainst(TIPO_R,f7_RESTO,2,3,f3_SLT,12));
+	Mem_RISC_e_INST.write_mem(20,gerainst(TIPO_R,f7_RESTO,2,3,f3_SLT,12));
 //    /* SLTU $12, $3, $9*/
-//	Mem_RISC_e_INST.write_mem(22,gerainst(TIPO_R,f7_RESTO,9,3,f3_SLTU,12));
+	Mem_RISC_e_INST.write_mem(21,gerainst(TIPO_R,f7_RESTO,9,3,f3_SLTU,12));
 //   /*BLT $21,$4,827*/
 //    //Mem_RISC_e_INST.write_mem(25,gerainst(TIPO_B,827,4,21,f3_BLT));
 //    /*BGE $9,$5,888*/
@@ -147,7 +146,7 @@ int sc_main(int argc, char* argv[]){
 
     sc_start();
 
-    Memoria_NOC.dump_mem(0,50,'H');
+    //Memoria_NOC.dump_mem(0,50,'H');
 
 	return 0;
 }
@@ -213,8 +212,8 @@ uint32_t gerainst(int n, ...){
 		inst = inst | n;
 
 
-		std::cout << "inst ->" << std::bitset<32>(inst) <<std::endl;
-		std::cout <<std::hex<< "n ->" << n <<std::endl;
+//		std::cout << "inst ->" << std::bitset<32>(inst) <<std::endl;
+//		std::cout <<std::hex<< "n ->" << n <<std::endl;
 		break;
 		// TIPO S => imm(11-5), rs2, rs1, funct3, imm(4-0)
 	case TIPO_S :

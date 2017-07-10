@@ -43,7 +43,6 @@ void mem::interpreta_Noc(){
 		case _SW:
 			address = memIn.read();
 			dado = memIn.read();
-			cout << "dado eh " << dado << endl;
 			sw(address, 0, dado);
 			flag_salvou = 1;
 			break;
@@ -71,7 +70,6 @@ void mem::interpreta_Noc(){
 		else{
 			//Caso n haja erro
 			memOut.write(1);
-			cout << "Debugando" << endl;
 			//Se for load, deve mandar dado tambem
 			if(!flag_salvou){
 				memOut.write(dado_retorno);

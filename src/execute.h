@@ -268,7 +268,8 @@ SC_MODULE(execute){
 								p_breg->write(e_rd, (p_breg->read(e_rs1))<< e_shamt);
 							}
 						break;
-
+					} //switch funct 3
+					break;
 				case TIPO_R:
 
 					switch(e_funct7){
@@ -315,7 +316,7 @@ SC_MODULE(execute){
 									// and
 									p_breg->write(e_rd, (p_breg->read(e_rs1) & p_breg->read(e_rs2)));
 									break;
-									
+
 								} // fim funct 3 -> f7 resto
 							break;
 							case f7_SRA_SUB:
@@ -331,18 +332,9 @@ SC_MODULE(execute){
 								}// fim funct 3 -> f7 SRA_SUB
 
 							break;
-
-					}// fim switch funct 7
-
-
-				break;		
-					
-					}// fim switch funct3 - imediato
-
-
-
-
-								}// FIM SWITCH 		
+					} //fim e_funct 7
+					break;
+				}// fim switch e_op
 				//p_breg->write(0, 0);
 				execute_fetch.write(escrita);
 			} //while
@@ -385,13 +377,10 @@ private:
 								  if (e_k8 < 0) p_breg->write(e_rs, (p_breg->read(e_rs))<< (-e_k8));
 								  else p_breg->write(e_rs, (p_breg->read(e_rs)) >> (e_k8));
 								  break;
-
 					case i_SLT:  p_breg->write(e_rd, (p_breg->read(e_rs)<p_breg->read(e_rt)));
 								break;
-
 					case i_LW:   p_breg->write(e_rd, p_mem->lw(p_breg->read(e_rs) + p_breg->read(e_rt), 0));
 					break;
-
 					case i_SW:  p_mem->sw((p_breg->read(e_rs)+p_breg->read(e_rt)), 0, p_breg->read(e_rd));
 					break;
 					case i_LUI:  p_breg->write(e_rs, e_k8<<8);
