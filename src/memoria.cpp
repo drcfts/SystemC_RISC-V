@@ -42,7 +42,8 @@ void mem::interpreta_Noc(){
 	    //Saves recebem, alem disso, os dados
 		case _SW:
 			address = memIn.read();
-			dado = memIn.read();;
+			dado = memIn.read();
+			cout << "dado eh " << dado << endl;
 			sw(address, 0, dado);
 			flag_salvou = 1;
 			break;
@@ -70,6 +71,7 @@ void mem::interpreta_Noc(){
 		else{
 			//Caso n haja erro
 			memOut.write(1);
+			cout << "Debugando" << endl;
 			//Se for load, deve mandar dado tambem
 			if(!flag_salvou){
 				memOut.write(dado_retorno);
@@ -401,13 +403,13 @@ void mem::dump_mem(int inicio, int fim, char formato){
 	switch (formato) {
 		case 'h':
 		case 'H':
-			for (int32_t i = inicio; i <= fim; i+=4)
-				printf("%d\t%8x\n", i, lw(i, 0));
+			for (int32_t i = inicio; i <= fim; i+=1)
+				printf("%d\t%8x\n", i, mem_ptr[i]);
 			break;
 		case 'd':
 		case 'D':
-			for (int32_t i = inicio; i <= fim; i+=4)
-				printf("%d\t%8d\n", i, lw(i, 0));
+			for (int32_t i = inicio; i <= fim; i+=1)
+				printf("%d\t%8d\n", i, mem_ptr[i]);
 			break;
 		default:
 			break;

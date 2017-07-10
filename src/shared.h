@@ -18,9 +18,8 @@ const short MAX_MEM=1024;
 #define CACHE_BLOCKS 256
 
 typedef struct{
-
+	uint32_t ri;
 	short ic,
-		  ri,
 		  opcode,
 		  //PC eh um registrador, n precisa de campo
 		  //pc,
@@ -145,9 +144,9 @@ inline std::vector<uint32_t> monta_send_load(uint32_t comando,uint32_t adress,ui
     		{
 	std::vector<uint32_t> ans;
 	// inserindo comando na primeira posicao do vector
-	ans.at(0)=comando;
+	ans.push_back(comando);
 	// inserindo adress + cte na segunda posicao do vector
-	ans.at(1)= adress + constante;
+	ans.push_back(adress + constante);
 
 	return ans;
     		}
@@ -157,11 +156,11 @@ inline std::vector<uint32_t> monta_send_store(uint32_t comando,uint32_t adress,u
     		{
 	std::vector<uint32_t> ans;
 	// inserindo comando na primeira posicao do vector
-	ans.at(0)=comando;
+	ans.push_back(comando);
 	// inserindo adress + cte na segunda posicao do vector
-	ans.at(1)= adress + constante;
+	ans.push_back(adress + constante);
 	// por fim insere o dado
-	ans.at(2)= dado;
+	ans.push_back(dado);
 
 	return ans;
     		}

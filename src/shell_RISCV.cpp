@@ -61,11 +61,11 @@ void ShellRISCV::_threadRun()
         receivePayload(payload, &payloadSrc);
         overhead = payload.at(0);
         shellOut.write(overhead);
+		NoCDebug::printDebug("ShellRISC -> Master", NoCDebug::NI);
         //Se deu certo
         if(overhead){
         	//Se for load, le ainda o dado
         	if(!flag_save){
-        		NoCDebug::printDebug("ShellRISC -> Master", NoCDebug::NI);
         		rec = payload.at(1);
         		shellOut.write(rec);
         	}

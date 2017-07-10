@@ -12,6 +12,7 @@
 #include "breg_if.h"
 #include "mem_if.h"
 #include "shared.h"
+#include <bitset>
 
 SC_MODULE(decode){
 
@@ -32,6 +33,7 @@ SC_MODULE(decode){
 			escrita->funct3 = (ri >> 12) & 0x7;
 			
 			escrita->Imm_I = (ri >> 20) & 0xFFF;
+			cout << std::bitset<32>(ri) << endl;
 			escrita->Imm_U = (ri >> 12) & 0xFFFFF;
 			escrita->rs1 = (ri >> 15) & 0x1F;
 			escrita->rs2 = (ri >> 20) & 0x1F;
@@ -87,7 +89,7 @@ SC_MODULE(decode){
 private:
 		contexto *recebimento, *escrita;
 		uint32_t ax1,ax2,xa1,xa2;
-		unsigned short ri, rd;
+		uint32_t ri, rd;
 		short 	imm_B_4_1,  imm_B_10_5,  imm_J_8,  imm_J_10, imm_B_12;
 		short _bit11_tipoB;
 		short _bit12_tipoB;//poderia ser bool

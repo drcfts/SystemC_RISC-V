@@ -9,7 +9,7 @@ std::vector<uint32_t> aux_send,word_tmp;
 uint32_t _flag , _dado;
     // enviando o payload
     aux_send = monta_send_load(_LW,address,constante);
-    shellMEM_RISC_Out.write(_LW);
+
     for(int i=0; i < aux_send.size(); i++){
     	shellMEM_RISC_Out.write(aux_send.at(i));
     }
@@ -29,7 +29,6 @@ int32_t shell_mem_risc :: lh(const unsigned address, int32_t constante)
 
 	std::vector<uint32_t> aux_send,word_tmp;
 	uint32_t _flag , _dado;
-	shellMEM_RISC_Out.write(_LH);
 	// enviando o payload
 	aux_send = monta_send_load(_LH,address,constante);
 	for(int i=0; i < aux_send.size(); i++){
@@ -50,7 +49,6 @@ int32_t shell_mem_risc :: lh(const unsigned address, int32_t constante)
 int32_t shell_mem_risc :: lhu(const unsigned address, int32_t constante){
 	std::vector<uint32_t> aux_send,word_tmp;
 	uint32_t _flag , _dado;
-	shellMEM_RISC_Out.write(_LHU);
 	// enviando o payload
 	aux_send = monta_send_load(_LHU,address,constante);
 	for(int i=0; i < aux_send.size(); i++){
@@ -70,7 +68,6 @@ int32_t shell_mem_risc :: lhu(const unsigned address, int32_t constante){
 int32_t shell_mem_risc :: lb(const unsigned address, int32_t constante){
 	std::vector<uint32_t> aux_send,word_tmp;
 	uint32_t _flag , _dado;
-	shellMEM_RISC_Out.write(_LB);
 	// enviando o payload
 	aux_send = monta_send_load(_LB,address,constante);
 	for(int i=0; i < aux_send.size(); i++){
@@ -90,7 +87,6 @@ int32_t shell_mem_risc :: lbu(const unsigned address, int32_t constante){
 
 	std::vector<uint32_t> aux_send,word_tmp;
 	uint32_t _flag , _dado;
-	shellMEM_RISC_Out.write(_LBU);
 	// enviando o payload
 	aux_send = monta_send_load(_LBU,address,constante);
 	for(int i=0; i < aux_send.size(); i++){
@@ -113,7 +109,6 @@ int32_t shell_mem_risc :: lbu(const unsigned address, int32_t constante){
 void shell_mem_risc ::sw(const unsigned address, int32_t constante, int32_t dado){
 	std::vector<uint32_t> aux_send,word_tmp;
 	uint32_t _flag , _dado;
-	shellMEM_RISC_Out.write(_SW);
 	// enviando o payload
 	aux_send = monta_send_store(_SW,address,constante, dado);
 	for(int i=0; i < aux_send.size(); i++){
@@ -131,7 +126,6 @@ void shell_mem_risc ::sw(const unsigned address, int32_t constante, int32_t dado
 void shell_mem_risc ::sh(const unsigned address, int32_t constante, int32_t dado){
 	std::vector<uint32_t> aux_send,word_tmp;
 	uint32_t _flag , _dado;
-	shellMEM_RISC_Out.write(_SH);
 	// enviando o payload
 	aux_send = monta_send_store(_SH,address,constante, dado);
 	for(int i=0; i < aux_send.size(); i++){
@@ -150,12 +144,12 @@ void shell_mem_risc :: sb(const unsigned address, int32_t constante, int32_t dad
 {
 	std::vector<uint32_t> aux_send,word_tmp;
 	uint32_t _flag , _dado;
-	shellMEM_RISC_Out.write(_SB);
 	// enviando o payload
 	aux_send = monta_send_store(_SB,address,constante, dado);
 	for(int i=0; i < aux_send.size(); i++){
 		shellMEM_RISC_Out.write(aux_send.at(i));
 	}
+	cout << "Debug" << endl;
 	// supondo que recebe dois argumentos --- flag e ok ;
 	_flag = shellMEM_RISC_In.read();
 	if(!_flag){ // se tiver erro retransmite

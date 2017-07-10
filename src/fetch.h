@@ -42,7 +42,7 @@ SC_MODULE(fetch){
 					if(escrita->ri == 0){
 						p_breg->dump_breg();
 						sc_stop();
-						exit(0);
+						//exit(0);
 					} //if
 			fetch_decode.write(escrita);
 		} // while

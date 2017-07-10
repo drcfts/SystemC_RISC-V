@@ -28,17 +28,17 @@ void MemoriaShell::_threadRun()
         if(rec == _SB || rec == _SW || rec == _SH){
         	flag_save = 1;
         	//Le addr
-        	rec = shellIn.read();
+        	rec = payload.at(1);
         	//Coloca addr
         	shellOut.write(rec);
         	//Le dado
-        	send = shellIn.read();
+        	send = payload.at(2);
         	//Coloca dado
-        	shellOut.write(rec);
+        	shellOut.write(send);
         }
         else{
         	//Le addr
-        	rec = shellIn.read();
+        	rec = payload.at(1);
         	//Coloca addr
         	shellOut.write(rec);
         }
@@ -51,6 +51,7 @@ void MemoriaShell::_threadRun()
         //Se for load, tem dado
         if(!flag_save){
         	send = shellIn.read();
+            cout << "Debug " << send << endl;
         	payload.push_back(send);
         }
         int payloadDst = 0;
