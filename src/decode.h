@@ -61,7 +61,7 @@ SC_MODULE(decode){
 		    ax2 = (((imm_J_8 << 11) | ax1)& 0xFFF) ;
 		    escrita->Imm_J = ((_bit20_tipoJ << 19) | ax2) & 0xFFFFF;
 			///////////////////////////////////	
-			escrita->Imm_S = (((escrita->funct7 << 5 )|rd) & 0xFFF);
+			escrita->Imm_S = (((escrita->funct7 << 5 )|escrita->rd) & 0xFFF);
 			/////////////////////////////////////		  	
 			xa1  =  ((imm_B_10_5 << 4) | imm_B_4_1) & 0x3FF;
 			xa2 = ((_bit11_tipoB << 10) | xa1) & 0x7FF; 

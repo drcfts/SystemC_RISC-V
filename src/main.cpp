@@ -81,26 +81,26 @@ int sc_main(int argc, char* argv[]){
 	// Memoria.write_mem(,gerainst(TIPO_AUIPC,931,26);
 
 	/*ADDI $3, $2, 10*/
-	Mem_RISC_e_INST.write_mem(0, gerainst(TIPO_I2_SHAMT,0,10, 2, f3_ADDI, 3));
+	Mem_RISC_e_INST.write_mem(0, gerainst(TIPO_I2_SHAMT,f3_ADDI,10, 2, 3));
     /* SLTI $1, $3, 11;*/
-	Mem_RISC_e_INST.write_mem(1,gerainst(TIPO_I2_SHAMT,0,11, 3, f3_SLTI, 1));
+	Mem_RISC_e_INST.write_mem(1,gerainst(TIPO_I2_SHAMT,f3_SLTI,11, 3, 1));
 //    /* XORI $3, $3, 10*/
-	Mem_RISC_e_INST.write_mem(2,gerainst(TIPO_I2_SHAMT,0,10, 3, f3_XORI, 3));
+	Mem_RISC_e_INST.write_mem(2,gerainst(TIPO_I2_SHAMT,f3_XORI,10, 3, 3));
 //    /* ORI $9, $3, 31*/
-	Mem_RISC_e_INST.write_mem(3,gerainst(TIPO_I2_SHAMT,0,31, 3, f3_ORI, 9));
+	Mem_RISC_e_INST.write_mem(3,gerainst(TIPO_I2_SHAMT,f3_ORI,31, 3, 9));
 //    /*ANDI $9, $9, 15*/
-	Mem_RISC_e_INST.write_mem(4,gerainst(TIPO_I2_SHAMT,0,15, 9, f3_ANDI, 9));
+	Mem_RISC_e_INST.write_mem(4,gerainst(TIPO_I2_SHAMT,f3_ANDI,15, 9, 9));
 //    /*BEQ $2,$9,13*/
 //	Mem_RISC_e_INST.write_mem(5,gerainst(TIPO_B,13,9,2,f3_BEQ));
 //    /*BNE $2,$9,13*/
 //	Mem_RISC_e_INST.write_mem(6,gerainst(TIPO_B,13,9,2,f3_BNE));
 //    /*LUI $26,31*/
 	Mem_RISC_e_INST.write_mem(5,gerainst(TIPO_LUI,31,26));
-	  /* SB $2, $9, 0 */
-	Mem_RISC_e_INST.write_mem(6,gerainst(TIPO_S,0, 9, 2, f3_SW));
+	  /* SB $2, $9, 1 */
+	Mem_RISC_e_INST.write_mem(6,gerainst(TIPO_S,4, 9, 2, f3_SW));
 	//imm, rs1,func3,rd
-	  /* LW $5, $0, 0 */
-	Mem_RISC_e_INST.write_mem(7,gerainst(TIPO_I_REST0,0, 0, f3_LW, 5));
+	  /* LW $14, $0, 4 */
+	Mem_RISC_e_INST.write_mem(7,gerainst(TIPO_I_REST0,4, 0, f3_LW, 14));
 //    /* AUIPC $6,1*/
 //	Mem_RISC_e_INST.write_mem(8,gerainst(TIPO_AUIPC,1,6));
 //    /*ADD $7,$5,$9;*/
@@ -113,30 +113,30 @@ int sc_main(int argc, char* argv[]){
 	Mem_RISC_e_INST.write_mem(11,gerainst(TIPO_R,f7_RESTO,2,9,f3_SRL_SRA,17));
 //   /*  SLL $5,$9,$3*/
 	Mem_RISC_e_INST.write_mem(12, gerainst(TIPO_R,f7_RESTO,3,9,f3_SLL,5));
-//    /*XOR $1,$2,$2*/
+//    /*XOR $4,$2,$2*/
 	Mem_RISC_e_INST.write_mem(13,gerainst(TIPO_R,f7_RESTO,2,2,f3_XOR,1));
-//    /*AND $22,$1,$9;*/
-	Mem_RISC_e_INST.write_mem(14,gerainst(TIPO_R,f7_RESTO,9,1,f3_AND,22));
-//    /*OR $6,$21,$28;*/
-	Mem_RISC_e_INST.write_mem(15,gerainst(TIPO_R,f7_RESTO,28,21,f3_OR,6));
+//    /*AND $22,$9,$9;*/
+	Mem_RISC_e_INST.write_mem(14,gerainst(TIPO_R,f7_RESTO,9,9,f3_AND,22));
+//    /*OR $6,$31,$22;*/
+	Mem_RISC_e_INST.write_mem(15,gerainst(TIPO_R,f7_RESTO,31,22,f3_OR,6));
 //    /* JALR $23, $2, 1*/
 //	//Mem_RISC_e_INST.write_mem(17,gerainst(TIPO_JALR,1, 2,0,23));
-//    /*SRAI $13, $2, 10*/
-	Mem_RISC_e_INST.write_mem(16,gerainst(TIPO_I2_SHAMT,f7_SRAI,10, 2, f3_SRLI_SRAI, 13));
-//    /*SRLI $13, $2, 10*/
-	Mem_RISC_e_INST.write_mem(17,gerainst(TIPO_I2_SHAMT,f7_RESTO,10, 2, f3_SRLI_SRAI, 13));
-//    /*SLLI $13, $2, 10*/
-	Mem_RISC_e_INST.write_mem(18,gerainst(TIPO_I2_SHAMT,f7_RESTO,10, 2, f3_SLLI, 13));
+//    /*SRAI $13, $6, 2*/
+	Mem_RISC_e_INST.write_mem(16,gerainst(TIPO_I2_SHAMT,f3_SRLI_SRAI,f7_SRAI,2, 6, 13));
+//    /*SRLI $13, $13, 1*/
+	Mem_RISC_e_INST.write_mem(17,gerainst(TIPO_I2_SHAMT,f3_SRLI_SRAI,f7_RESTO,1, 13, 13));
+//    /*SLLI $13, $13, 2*/
+	Mem_RISC_e_INST.write_mem(18,gerainst(TIPO_I2_SHAMT,f3_SLLI,f7_RESTO,2, 13, 13));
 //    /* JAL $5,255;*/
 //	//Mem_RISC_e_INST.write_mem(21,gerainst(TIPO_JAL,255,5));
-//    /* SLTIU $3, $2, -2*/
-	Mem_RISC_e_INST.write_mem(19,gerainst(TIPO_I2_SHAMT,-2, 2, f3_SLTIU, 3));
+//    /* SLTIU $10, $2, -2*/
+	Mem_RISC_e_INST.write_mem(19,gerainst(TIPO_I2_SHAMT,f3_SLTIU,-2, 2, 10));
 //    /* SLT $12, $3, $2*/
-	Mem_RISC_e_INST.write_mem(20,gerainst(TIPO_R,f7_RESTO,2,3,f3_SLT,12));
+	//Mem_RISC_e_INST.write_mem(20,gerainst(TIPO_R,f7_RESTO,2,3,f3_SLT,12));
 //    /* SLTU $12, $3, $9*/
-	Mem_RISC_e_INST.write_mem(21,gerainst(TIPO_R,f7_RESTO,9,3,f3_SLTU,12));
-//   /*BLT $21,$4,827*/
-//    //Mem_RISC_e_INST.write_mem(25,gerainst(TIPO_B,827,4,21,f3_BLT));
+	//Mem_RISC_e_INST.write_mem(21,gerainst(TIPO_R,f7_RESTO,9,3,f3_SLTU,12));
+//     /*BLT $22,$4,10*/
+	Mem_RISC_e_INST.write_mem(20,gerainst(TIPO_B,10,22,4,f3_BLT));
 //    /*BGE $9,$5,888*/
 //    //Mem_RISC_e_INST.write_mem(26,gerainst(TIPO_B,888,5,9,f3_BGE));
 //    /*BLTU $2,$9,913*/
@@ -146,7 +146,7 @@ int sc_main(int argc, char* argv[]){
 
     sc_start();
 
-    //Memoria_NOC.dump_mem(0,50,'H');
+    Memoria_NOC.dump_mem(0,50,'H');
 
 	return 0;
 }
@@ -164,6 +164,7 @@ int sc_main(int argc, char* argv[]){
 uint32_t gerainst(int n, ...){
 	uint32_t inst = 0;
 	int imediato_JAL, imediato_S, imediato_B;
+	int funct_3;
 	va_list ap;
 
 	va_start(ap, n);
@@ -198,14 +199,22 @@ uint32_t gerainst(int n, ...){
 		break;
 	//gerainst(TIPO_I2_SHAMT,0,10, 2, f3_ADDI, 3)
 	case TIPO_I2_SHAMT :
-		// colocando f7
-		inst = (va_arg(ap, int) & 0x7F) << 5;
-		// colocando SHAMT
-		inst = ((va_arg(ap, int) & 0x1F) | inst) << 5;
+		funct_3 = va_arg(ap, int);
+
+		if(funct_3 == 1 || funct_3 == 5){
+			// colocando f7
+			inst = (va_arg(ap, int) & 0x7F) << 5;
+			// colocando SHAMT
+			inst = ((va_arg(ap, int) & 0x1F) | inst) << 5;
+		}
+		else{
+			//Senao, coloca imediato de 12 bits
+			inst = ((va_arg(ap, int) & 0xFFF) ) << 5;
+		}
 		// colocando rs1
 		inst = ((va_arg(ap, int) & 0x1F) | inst) << 3;
 		// colocando funct3
-		inst = ((va_arg(ap, int) & 0x7) | inst) << 5;
+		inst = ((funct_3 & 0x7) | inst) << 5;
 		// colocando rd
 		inst = ((va_arg(ap, int) & 0x1F) | inst) << 7;
 		// por fim opcode
@@ -227,9 +236,10 @@ uint32_t gerainst(int n, ...){
 //		std::cout <<std::dec<< "inst ->" << inst <<std::endl;
 //		std::cout <<std::hex<< "n ->" << n <<std::endl;
 		break;
+		//gerainst(TIPO_B,10,22,4,f3_BLT)
 	case TIPO_B :
 		imediato_B = (va_arg(ap, int));
-		// primeiro bit
+		// bit 12
 		inst = (((imediato_B >> 11) & 0x1) ) << 6;
 		// mais um pedaco imm[10:5]
 		inst = (((imediato_B & 0x3F0) )) << 5;
@@ -240,12 +250,10 @@ uint32_t gerainst(int n, ...){
 		//funct3
 		inst = ((va_arg(ap, int) & 0x1F) | inst) << 4;
 		//// mais um pedaco imm[4:1]
-		inst = ((imediato_B & 0x01E )) << 1;
+		inst = ((imediato_B & 0x01E ) | inst ) << 1;
 		// mais um bit
-		inst = (((imediato_B >> 10) & 0x1) ) << 7;
+		inst = (((imediato_B >> 10) & 0x1) | inst ) << 7;
 		inst |= n;
-
-
 		break;
     // JAL => imm(20), imm(10-1), imm(11), imm(19-12), rd
 	case TIPO_JAL :

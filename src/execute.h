@@ -36,6 +36,7 @@ SC_MODULE(execute){
 			e_imm_U = recebimento->Imm_U;
 			e_imm_J = recebimento->Imm_J;
 			e_imm_B = recebimento->Imm_B;
+			e_imm_S = recebimento->Imm_S;
 			e_shamt = recebimento->shamt;
 			// switch
 			//Caso R:
@@ -140,30 +141,30 @@ SC_MODULE(execute){
 					switch(e_funct3){
 						case f3_LB: 
 							// load byte
-							p_breg->write(e_rd, p_mem->lb(p_breg->read(e_rs1), e_imm_S));
+							p_breg->write(e_rd, p_mem->lb(p_breg->read(e_rs1), e_imm_I));
 						//	p_breg->write(e_rd, p_shell->lb(p_breg->read(e_rs1), e_imm_S));
 
 							break;
 						case f3_LH: 
 							// load half
-							p_breg->write(e_rd, p_mem->lh(p_breg->read(e_rs1), e_imm_S));
+							p_breg->write(e_rd, p_mem->lh(p_breg->read(e_rs1), e_imm_I));
 						//	p_breg->write(e_rd, p_shell->lh(p_breg->read(e_rs1), e_imm_S));
 							break;
 						case f3_LW: 
 							// load word
-							p_breg->write(e_rd, p_mem->lw(p_breg->read(e_rs1), e_imm_S));
+							p_breg->write(e_rd, p_mem->lw(p_breg->read(e_rs1), e_imm_I));
 					   //	p_breg->write(e_rd, p_shell->lw(p_breg->read(e_rs1), e_imm_S));
 
 							break;
 						case f3_LBU: 
 							// load byte unsigned
-							p_breg->write(e_rd, p_mem->lbu(p_breg->read(e_rs1), e_imm_S));
+							p_breg->write(e_rd, p_mem->lbu(p_breg->read(e_rs1), e_imm_I));
 						//	p_breg->write(e_rd, p_shell->lbu(p_breg->read(e_rs1), e_imm_S));
 
 							break;
 						case f3_LHU: 
 							// load half unsigned
-							p_breg->write(e_rd, p_mem->lhu(p_breg->read(e_rs1), e_imm_S));
+							p_breg->write(e_rd, p_mem->lhu(p_breg->read(e_rs1), e_imm_I));
 						//  p_breg->write(e_rd, p_shell->lhu(p_breg->read(e_rs1), e_imm_S));
 
 							break;
