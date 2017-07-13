@@ -115,10 +115,9 @@ src/main.o: ../src/main.cpp ../src/fetch.h \
  /usr/local/systemc/include/sysc/packages/boost/utility/enable_if.hpp \
  ../src/shared.h ../src/breg_if.h ../src/SHELL_MEM_RISC_if.h \
  ../src/decode.h ../src/mem_if.h ../src/execute.h ../src/breg.h \
- ../src/memoria_instrucoes.h ../src/shell_RISCV.h \
- ../src/networkinterfacefrontendbase.h ../src/inetworkinterfacefrontend.h \
- ../src/SHELL_MEM_RISC.h ../src/shell_Memoria.h ../src/memoria.h \
- ../src/specialkernel.h
+ ../src/shell_RISCV.h ../src/networkinterfacefrontendbase.h \
+ ../src/inetworkinterfacefrontend.h ../src/SHELL_MEM_RISC.h \
+ ../src/shell_Memoria.h ../src/memoria.h ../src/specialkernel.h
 
 ../src/fetch.h:
 
@@ -365,8 +364,6 @@ src/main.o: ../src/main.cpp ../src/fetch.h \
 ../src/execute.h:
 
 ../src/breg.h:
-
-../src/memoria_instrucoes.h:
 
 ../src/shell_RISCV.h:
 

@@ -3,7 +3,6 @@
 #include "execute.h"
 #include "stdarg.h"
 #include "breg.h"
-#include "memoria_instrucoes.h"
 #include "shared.h"
 #include "shell_RISCV.h"
 #include "SHELL_MEM_RISC.h"
@@ -17,7 +16,7 @@ uint32_t gerainst(int n, ...);
 
 
 int sc_main(int argc, char* argv[]){
-
+	//Instanciacao dos modulos
 	fetch Fetch("Fetch");
 	decode Decode("Decode");
 	execute Execute("Execute");
@@ -29,12 +28,11 @@ int sc_main(int argc, char* argv[]){
 
 	breg Breg("Breg");
 
-
-
 	sc_fifo < contexto* > e_f( 1);
 	sc_fifo < contexto* > f_d( 1);
 	sc_fifo < contexto* > d_e( 1);
 
+	//Conexao das portas
 	Fetch.p_mem(Mem_RISC_e_INST);
 	Fetch.p_breg(Breg);
 	Fetch.execute_fetch(e_f);
@@ -70,16 +68,12 @@ int sc_main(int argc, char* argv[]){
 	multKernel.connectSlave(&Shell_Memoria);
 
 
+	//Criacao do contexto para inicializar filas bloqueantes
 	contexto *dado_entrada = new contexto();
 
 	e_f.write(dado_entrada);
 
-	//		Memoria.write_mem(0, gerainst(TIPO_J, i_ADDi, 1, 0 ));
-    /*LUI $26,931;*/
-	// Memoria.write_mem(,gerainst(TIPO_LUI,931,26);
-	/*  AUIPC $26,931 */
-	// Memoria.write_mem(,gerainst(TIPO_AUIPC,931,26);
-
+	//Escrita na memoria das instrucoes
 	/*ADDI $3, $2, 10*/
 	Mem_RISC_e_INST.write_mem(0, gerainst(TIPO_I2_SHAMT,f3_ADDI,10, 2, 3));
     /* SLTI $1, $3, 11;*/
@@ -96,7 +90,7 @@ int sc_main(int argc, char* argv[]){
 //	Mem_RISC_e_INST.write_mem(6,gerainst(TIPO_B,13,9,2,f3_BNE));
 //    /*LUI $26,31*/
 	Mem_RISC_e_INST.write_mem(5,gerainst(TIPO_LUI,31,26));
-	  /* SB $2, $9, 1 */
+	  /* SW $2, $9, 4 */
 	Mem_RISC_e_INST.write_mem(6,gerainst(TIPO_S,4, 9, 2, f3_SW));
 	//imm, rs1,func3,rd
 	  /* LW $14, $0, 4 */

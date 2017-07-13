@@ -15,6 +15,7 @@ void MemoriaShell::_threadRun()
 
     for (;;) {
     	flag_save = 0;
+
         // Reading
         std::vector<uint32_t> payload;
         int payloadSrc;
